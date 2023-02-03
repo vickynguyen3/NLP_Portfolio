@@ -24,22 +24,42 @@ class Person:
     def display(self):
         print('Employee id:' + id)
 
+# modify last name and first name to be in Capital Case, if necessary
+def modName(name):
+    return name.capitalize()
 
-# create function to process input file, get rid of the first line which is the heading line
-def processFile():
+# modify middle initial to be a single upper case letter, if necessary
+# use 'X' as a middle initial if one is missing
+def modMi(mi):
+    if not mi:
+        return 'X'
+    else:
+        return mi.capitalize()
 
-    # split on comma to get fields as text variables
-
-    # modify last name and first name to be in Capital Case, if necessary
-
-    # modify middle initial to be a single upper case letter, if necessary
-    # use 'X' as a middle initial if one is missing
-
-    # modify id if necessary, using regex. Id should be 2 letters
+# modify id if necessary, using regex. Id should be 2 letters
     # followed by 4 digits. if an id is not in the correct format, output an error
     # msg, and allow user to re-enter a valid ID
+def modId(id):
+    return id
 
-    # modify phone number, if necessary, to be in form 999-999-9999. use regex
+# modify phone number, if necessary, to be in form 999-999-9999. use regex
+def modPhoneNum(phoneNum):
+    return phoneNum
+
+# create function to process input file, get rid of the first line which is the heading line
+def processFile(txt_in):
+
+    # split on comma to get fields
+    for line in txt_in:
+        fields = line.split(',')
+
+    # modify first, last, mi, id, phone number if necessary
+    firstName = modName(fields[1])
+    lastName = modName(fields[0])
+    mi = modMi(fields[2])
+    id = modId(fields[3])
+    phoneNum = modPhoneNum(fields[4])
+    
 
     # once data for a person is correct, create a Person object and save the object to a dict of persons
     # where id is the key. check for duplicate id and print and error msg if an id is repeated in the file
@@ -63,11 +83,11 @@ if __name__ == '__main__':
 
     # read in data and close file
     with open(pathlib.Path.cwd().joinpath(rel_path), 'r') as file:
-        text_in = file.read().splitlines()
+        txt_in = file.read().splitlines()
 
     # call process function and ignore the header line
     # place all people from data input into 'employees' dict 
-    employees = processFile(text_in[1:])
+    employees = processFile(txt_in[1:])
 
     # pickle file, write back
     pickle.dump(employees, open('employees.pickle', 'wb'))
