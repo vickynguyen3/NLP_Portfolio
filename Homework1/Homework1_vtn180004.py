@@ -55,8 +55,8 @@ def processFile(txt_in):
 
     # modify first, last, mi, id, phone number if necessary
     firstName = modName(fields[1])
-    lastName = modName(fields[0])
     mi = modMi(fields[2])
+    lastName = modName(fields[0])
     id = modId(fields[3])
     phoneNum = modPhoneNum(fields[4])
     
