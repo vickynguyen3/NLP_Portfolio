@@ -7,7 +7,6 @@ import pathlib
 import re
 import pickle
 
-
 class Person:
     # init method
     def __init__(self, firstName, lastName, mi, id, phoneNum):
@@ -21,8 +20,8 @@ class Person:
     # \n = new line, \t = new tab
     def display(self):
         print('Employee id: ' + self.id
-        + '\n\t' + self.firstName + self.mi + self.lastName
-        + '\n\t' + self.phoneNum)
+        + '\n\t' + self.firstName + ' ' + self.mi + ' ' + self.lastName
+        + '\n\t' + self.phoneNum + '\n')
 
 # modify last name and first name to be capitalized
 def modName(name):
@@ -93,7 +92,7 @@ def processFile(txt_in):
             person = Person(firstName, lastName, mi, id, phoneNum)
             # update dictionary
             empDict.update({id : person})
-            
+
     # return dict of persons to main function
     return empDict
 
@@ -104,7 +103,7 @@ if __name__ == '__main__':
     # check if there's a sysarg
     if len(sys.argv) < 2:
         # print error msg and quit program
-        print('Please enter a file name as a system arg')
+        print('Please enter a file name as a system argument')
         quit()
 
     # user specifies relative path in a sysarg
@@ -125,7 +124,8 @@ if __name__ == '__main__':
     employees_in = pickle.load(open('empDict.pickle', 'rb'))
 
     # print employee list to check if successful unpickle
-    print('\n\nEmployee list:')
+    print('\n\nEmployee list:\n')
 
+    # print all the employees
     for person in employees_in:
         employees_in[person].display()
