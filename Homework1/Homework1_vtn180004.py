@@ -1,6 +1,6 @@
 # Vicky Nguyen, vtn180004
 # CS 4395.001
-# Homework 1 Portfolio Assignment 1: Text Processing
+# Homework 1: Text Processing
 
 import sys
 import pathlib
@@ -8,8 +8,6 @@ import re
 import pickle
 
 
-# define person class w/ fields: last, first, mi, id, and phone 
-# in addition to init method, create a display() method to output fields
 class Person:
 
     # init method
@@ -24,13 +22,13 @@ class Person:
     def display(self):
         print('Employee id:' + id)
 
-# modify last name and first name to be in Capital Case, if necessary
+# modify last name and first name to be capitalized, if necessary
 def modName(name):
     return name.capitalize()
 
-# modify middle initial to be a single upper case letter, if necessary
-# use 'X' as a middle initial if one is missing
+# modify middle name
 def modMi(mi):
+    # if mi is missing, input 'X' otherwise capitalize
     if not mi:
         return 'X'
     else:
@@ -40,6 +38,13 @@ def modMi(mi):
     # followed by 4 digits. if an id is not in the correct format, output an error
     # msg, and allow user to re-enter a valid ID
 def modId(id):
+
+    # regex, id format: 2 letters followed by 4 digits
+    if re.search('[a-zA-Z][a-zA-Z]\d\d\d\d', id) and len(id) == 6:
+        return id
+    else:
+        id = input('ID invalid:')
+    
     return id
 
 # modify phone number, if necessary, to be in form 999-999-9999. use regex
