@@ -69,13 +69,14 @@ def checkDupID(dict, idKey):
         return True    
     return False
 
-# create function to process input file, get rid of the first line which is the heading line
+# function to process input file
 def processFile(txt_in):
     # employee dictionary set up
     empDict = {} 
 
-    # split on comma to get fields
+    # for loop to go through each line in the file
     for line in txt_in:
+        # split on comma to get fields
         fields = line.split(',')
 
         # modify first, last, mi, id, phone number if necessary
