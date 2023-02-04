@@ -22,4 +22,4 @@ I learned how to utilize several variations of python functions such as
 input(), capititalize, keys(), search(), etc. I learned how to use
 dictionary and pickle.
 
-[code is here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Homework1/Homework1_vtn180004.py)
+[Code is here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Homework1/Homework1_vtn180004.py)
