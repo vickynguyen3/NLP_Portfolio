@@ -13,12 +13,12 @@ the program has found an error. After the progam has finished correcting the for
 ### How to run the program:
 py Homework1_vtn180004.py data/data.csv
 
-### Strength and Weakness of Python for Text Processing
+### Strength and Weakness
 The strength of python is that
 it is very high level and makes it easier to search such as the keys() or re.search(). The weakness of Python in my opinion is that there's no declaration for variables so I find it difficult to keep track or hard to find the error. For example, I had an error in my code, but I wasn't sure what the error is coming from and realized it came from my variable not being the same as what I typed in the parameter.
 
 ### What I've Learned 
-I learned how to use several variations of python functions such as
+I learned how to utilize several variations of python functions such as
 input(), capititalize, keys(), search(), etc. I learned how to use
 dictionary and pickle.
 
