@@ -22,7 +22,7 @@ class Person:
     def display(self):
         print('Employee id:' + id)
 
-# modify last name and first name to be capitalized, if necessary
+# modify last name and first name to be capitalized
 def modName(name):
     return name.capitalize()
 
@@ -34,22 +34,38 @@ def modMi(mi):
     else:
         return mi.capitalize()
 
-# modify id if necessary, using regex. Id should be 2 letters
-    # followed by 4 digits. if an id is not in the correct format, output an error
-    # msg, and allow user to re-enter a valid ID
+# modify ID 
 def modId(id):
 
-    # regex, id format: 2 letters followed by 4 digits
+    # regex, ID correct format: 2 letters followed by 4 digits
     if re.search('[a-zA-Z][a-zA-Z]\d\d\d\d', id) and len(id) == 6:
         return id
     else:
-        id = input('ID invalid:')
-    
-    return id
+        # ID not in correct format, output an error msg
+        # allow user to input a valid ID
+        id = input('ID invalid: ' + id 
+        + '\nID is two letters followed by 4 digits'
+        + '\nPlease enter a valid id: ')
+    return modId(id)
 
-# modify phone number, if necessary, to be in form 999-999-9999. use regex
+# modify phone number, if necessary
 def modPhoneNum(phoneNum):
-    return phoneNum
+
+    # regex, phone number correct format: 999-999-9999
+    if re.search('\d\d\d-\d\d\d-\d\d\d\d', phoneNum) and len(phoneNum) == 12:
+        return phoneNum
+    else:
+        # phone number not in correct format, output error msg
+        # allow user to input a valid phone number
+        id = input('Phone: ' + phoneNum + 'is invalid'
+        + '\nEnter phone number in the form 123-456-7890'
+        + '\nEnter phone number: ')
+    return modPhoneNum(phoneNum)
+
+# check for duplicate id and print and error msg if an id is repeated in the file
+def checkDup(dict, key):
+    if 
+    return False
 
 # create function to process input file, get rid of the first line which is the heading line
 def processFile(txt_in):
@@ -63,11 +79,11 @@ def processFile(txt_in):
     mi = modMi(fields[2])
     lastName = modName(fields[0])
     id = modId(fields[3])
-    phoneNum = modPhoneNum(fields[4])
+    #phoneNum = modPhoneNum(fields[4])
     
 
     # once data for a person is correct, create a Person object and save the object to a dict of persons
-    # where id is the key. check for duplicate id and print and error msg if an id is repeated in the file
+    # where id is the key. 
 
     # return the dict of persons to the main function
     return
@@ -103,5 +119,5 @@ if __name__ == '__main__':
     # print employee list to check if successful unpickle
     print('\n\nEmployee list:')
 
-    for id in employees_in:
-        employees_in[id].display()
+    # for id in employees_in:
+    #    employees_in[id].display()
