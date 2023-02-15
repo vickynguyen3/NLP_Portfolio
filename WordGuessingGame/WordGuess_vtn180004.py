@@ -5,43 +5,40 @@
 import sys
 import pathlib
 
+# function to preprocess raw text
+def processTxt(txt_in):
+    # a. tokenize lower-case raw text, reduce tokens to only those that are
+    # alpha, not in the NLTK stopword list, and have length >5
 
-# write a function to preprocess raw text
+    # b. lemmatize the tokens and use set() to make a list of unique lemmas
 
-# a. tokenize lower-case raw text, reduce tokens to only those that are
-# alpha, not in the NLTK stopword list, and have length >5
+    # c. do pos tagging on the unique lemmas and print the first 20 tagged
 
-# b. lemmatize the tokens and use set() to make a list of unique lemmas
+    # d. create a list of only those lemmas that are nouns
 
-# c. do pos tagging on the unique lemmas and print the first 20 tagged
+    # e. print number of tokens (from step a ) and number of nouns (step d)
 
-# d. create a list of only those lemmas that are nouns
+    # f. return tokens (not unique tokens) from step a, and nouns from the function
+    return
 
-# e. print number of tokens (from step a ) and number of nouns (step d)
 
-# f. return tokens (not unique tokens) from step a, and nouns from the function
+# guessing game function
+def guessGame():
+    # give user 5 points to start with; game ends when their total score is negative
+    # or they guess '!' as a letter
 
-# make a dictionary of {noun:count of noun in tokens} items from the nouns and tokens list
-# sort dict by count and print the 50 most common words and their counts.
-# save these words to a list bc they will be used in the guessing game
+    # randomly choose one of the 50 words in the top 50 list (see random
+    # numbers notebook in the Xtras folder of the github)
 
-# make a guessing game function
+    # output to console an "underscore space" for each letter in the word
 
-# give user 5 points to start with; game ends when their total score is negative
-# or they guess '!' as a letter
+    # ask the user for a letter
 
-# randomly choose one of the 50 words in the top 50 list (see random
-# numbers notebook in the Xtras folder of the github)
+    # if the letter is in the word, print 'Right!', fill in all matching letter _ with the letter
+    # and add 1 point to their score
 
-# output to console an "underscore space" for each letter in the word
-
-# ask the user for a letter
-
-# if the letter is in the word, print 'Right!', fill in all matching letter _ with the letter
-# and add 1 point to their score
-
-# if the letter is not in the word, subtract 1 from the score, print 'Sorry, guess again'
-
+    # if the letter is not in the word, subtract 1 from the score, print 'Sorry, guess again'
+    return
 
 
 # ---------------- main ----------------
@@ -61,7 +58,15 @@ with open(pathlib.Path.cwd().joinpath(rel_path), 'r') as file:
     txt_in = file.read()
 
 
+# declare noun dictionary 
+nounDict = {}
+
 # call function to preprocess the raw text
+# make a dictionary of {noun:count of noun in tokens} items from the nouns and tokens list
+processTxt(txt_in)
+
+# sort dict by count and print the 50 most common words and their counts.
+# save these words to a list bc they will be used in the guessing game
 
 # calculate lexical diversity of the tokenized text
 
