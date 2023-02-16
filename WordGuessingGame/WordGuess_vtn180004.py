@@ -4,15 +4,22 @@
 
 import sys
 import pathlib
+import nltk
 
 # function to preprocess raw text
 def processTxt(txt_in):
     # a. tokenize lower-case raw text, reduce tokens to only those that are
     # alpha, not in the NLTK stopword list, and have length >5
+    
 
     # b. lemmatize the tokens and use set() to make a list of unique lemmas
+    lemmas = set()
 
     # c. do pos tagging on the unique lemmas and print the first 20 tagged
+    tokens = nltk.word_tokenize(lemmas)
+    tags = nltk.pos_tag(tokens)
+    print(tags)
+
 
     # d. create a list of only those lemmas that are nouns
 
@@ -38,6 +45,13 @@ def guessGame():
     # and add 1 point to their score
 
     # if the letter is not in the word, subtract 1 from the score, print 'Sorry, guess again'
+
+    # guessing for a word ends if the user guesses the word or has a negative score
+
+    # keep a cumulative total score and end the game if it is negative (or the user entered '!') for a guess
+
+    # right or wrong, give user feedback on their score for this word after each guess
+
     return
 
 
