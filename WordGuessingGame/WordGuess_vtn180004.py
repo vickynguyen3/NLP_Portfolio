@@ -8,6 +8,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nlkt.tokenize import word_tokenize
+from nlkt.probability import FreqDist
 
 # function to preprocess raw text
 def processTxt(raw_txt):
@@ -90,15 +91,18 @@ rel_path = sys.argv[1]
 
 # read input file and close the file
 with open(pathlib.Path.cwd().joinpath(rel_path), 'r') as file:
-    raw_txt = file.read()
+    raw_txt = word_tokenize(file.read())
 
+# call function to preprocess the raw text
+tok_txt, nouns = processTxt(raw_txt)
 
 # declare noun dictionary 
 nounDict = {}
+# declare freq number
+nounFreq = FreqDist(tok_txt)
 
-# call function to preprocess the raw text
 # make a dictionary of {noun:count of noun in tokens} items from the nouns and tokens list
-processTxt(raw_txt)
+print('Dictionary: \n' + nounFreq)
 
 # sort dict by count and print the 50 most common words and their counts.
 # save these words to a list bc they will be used in the guessing game
