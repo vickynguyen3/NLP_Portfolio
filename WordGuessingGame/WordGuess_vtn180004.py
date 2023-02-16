@@ -5,28 +5,49 @@
 import sys
 import pathlib
 import nltk
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from nlkt.tokenize import word_tokenize
 
 # function to preprocess raw text
-def processTxt(txt_in):
-    # a. tokenize lower-case raw text, reduce tokens to only those that are
-    # alpha, not in the NLTK stopword list, and have length >5
-    
+def processTxt(raw_txt):
 
-    # b. lemmatize the tokens and use set() to make a list of unique lemmas
-    lemmas = set()
+    # tokenize lower-case raw text
+    tok_txt = [t.lower() for t in raw_txt]
 
-    # c. do pos tagging on the unique lemmas and print the first 20 tagged
-    tokens = nltk.word_tokenize(lemmas)
-    tags = nltk.pos_tag(tokens)
-    print(tags)
+    # make it only the words (alpha), not in NLTK stopword list, and len >5
+    tok_txt = [t for t in tok_txt if t.isalpha() and t not in stopwords.words('english') and len(t) > 5]
 
+    # lemmatize tokens
+    lemmatizer = WordNetLemmatizer()
+    lemmas = [lemmatizer.lemmatize(t) for t in tok_txt]
 
-    # d. create a list of only those lemmas that are nouns
+    # set() to make list of unique lemmas
+    lemmaList = list(set(lemmas))
 
-    # e. print number of tokens (from step a ) and number of nouns (step d)
+    # do pos tagging on the unique lemmas
+    tags = nltk.pos_tag(lemmaList)
 
-    # f. return tokens (not unique tokens) from step a, and nouns from the function
-    return
+    # print first 20 tagged
+    print('First 20 Tagged:\n')
+    for x in range(0, 20):
+        print(tags[x])
+     
+    # create a list of only lemmas that are nouns
+    nouns = []
+
+    # for loop over the tuple (tags)
+    for lemma, pos in tags:
+        if pos == 'NN':
+            nouns.append(lemma)
+
+    # print number of tokens 
+    print('Number of Tokens' + str(len(tok_txt)))
+    # print number of nouns
+    print('Number of Nouns' + str(len(nouns)))
+
+    # return tokens (not unique tokens) from step a, and nouns from the function
+    return tok_txt, nouns 
 
 
 # guessing game function
@@ -69,7 +90,7 @@ rel_path = sys.argv[1]
 
 # read input file and close the file
 with open(pathlib.Path.cwd().joinpath(rel_path), 'r') as file:
-    txt_in = file.read()
+    raw_txt = file.read()
 
 
 # declare noun dictionary 
@@ -77,7 +98,7 @@ nounDict = {}
 
 # call function to preprocess the raw text
 # make a dictionary of {noun:count of noun in tokens} items from the nouns and tokens list
-processTxt(txt_in)
+processTxt(raw_txt)
 
 # sort dict by count and print the 50 most common words and their counts.
 # save these words to a list bc they will be used in the guessing game
