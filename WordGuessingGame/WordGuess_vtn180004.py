@@ -10,6 +10,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.probability import FreqDist
 import math
+import random
 
 # function to preprocess raw text
 def processTxt(raw_txt):
@@ -53,34 +54,43 @@ def processTxt(raw_txt):
 
 
 # guessing game function
-def guessGame():
+def guessGame(wordList):
+
+    # give user 5 points to start with
+    total_pts = 5
 
     print("Let's play a word guessing game!")
-    # give user 5 points to start with
-    pts = 5
+    # player plays as long as it's not a negative total score or guess '!' as a letter
+    while total_pts >= 0 or choice is not '!':
+        # top 50 words
+        wordList = wordList[0:50]
+        
+        # randomly choose one of the 50 words in the top 50 list 
+        guess_word = random.choice(wordList)
 
-    # game ends when their total score is negative
-    # or they guess '!' as a letter
+        # output to console an "underscore space" for each letter in the word
+        guess_list = [*guess_word]
+        user_list = [u for u in len(guess_word) * '_']
 
-    # randomly choose one of the 50 words in the top 50 list (see random
-    # numbers notebook in the Xtras folder of the github)
+        print(user_list)
 
-    # output to console an "underscore space" for each letter in the word
+        # ask the user for a letter
+        choice = input('Guess a Letter: ')
 
-    # ask the user for a letter
+        # if the letter is in the word, print 'Right!', fill in all matching letter _ with the letter
+        # and add 1 point to their score
 
-    # if the letter is in the word, print 'Right!', fill in all matching letter _ with the letter
-    # and add 1 point to their score
+        # if the letter is not in the word, subtract 1 from the score, print 'Sorry, guess again'
 
-    # if the letter is not in the word, subtract 1 from the score, print 'Sorry, guess again'
+        # guessing for a word ends if the user guesses the word or has a negative score
 
-    # guessing for a word ends if the user guesses the word or has a negative score
+        # keep a cumulative total score and end the game if it is negative (or the user entered '!') for a guess
 
-    # keep a cumulative total score and end the game if it is negative (or the user entered '!') for a guess
-
-    # right or wrong, give user feedback on their score for this word after each guess
-
-    return
+        # right or wrong, give user feedback on their score for this word after each guess
+    
+    # print game over and quit game        
+    print('-- Game Over --')
+    quit()        
 
 
 # ---------------- main ----------------
@@ -98,6 +108,12 @@ rel_path = sys.argv[1]
 # read input file and close the file
 with open(pathlib.Path.cwd().joinpath(rel_path), 'r') as file:
     raw_txt = word_tokenize(file.read())
+
+# calculate lexical diversity of tokenized text
+# number of unique tokens / by the total number of tokens
+lexDiv = len(set(raw_txt)) / len(raw_txt)
+# output, formatted to 2 decimal places
+print('Lexical Diversity: ' + round(lexDiv, 2))
 
 # call function to preprocess the raw text
 tok_txt, nouns = processTxt(raw_txt)
@@ -126,11 +142,5 @@ for x in range(0, 50):
 
 # ----------- Word Guessing Game -----------
 
-ans = input("Enter 'play' to start or '!' to end game")
 # call function to start word guessing game
-
-# calculate lexical diversity of the tokenized text
-# number of unique tokens / by the total number of tokens
-lexDiv = / 
-# output, formatted to 2 decimal places
-print('Lexical Diversity: ' + round(lexDiv, 2))
+guessGame(wordList)
