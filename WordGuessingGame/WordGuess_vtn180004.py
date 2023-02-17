@@ -9,6 +9,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.probability import FreqDist
+import math
 
 # function to preprocess raw text
 def processTxt(raw_txt):
@@ -34,7 +35,7 @@ def processTxt(raw_txt):
     for x in range(0, 20):
         print(tags[x])
      
-    # create a list of only lemmas that are nouns
+    # create list of only lemmas that are nouns
     nouns = []
 
     # for loop over the tuple (tags)
@@ -53,7 +54,12 @@ def processTxt(raw_txt):
 
 # guessing game function
 def guessGame():
-    # give user 5 points to start with; game ends when their total score is negative
+
+    print("Let's play a word guessing game!")
+    # give user 5 points to start with
+    pts = 5
+
+    # game ends when their total score is negative
     # or they guess '!' as a letter
 
     # randomly choose one of the 50 words in the top 50 list (see random
@@ -96,6 +102,7 @@ with open(pathlib.Path.cwd().joinpath(rel_path), 'r') as file:
 # call function to preprocess the raw text
 tok_txt, nouns = processTxt(raw_txt)
 
+# ----------- Dictionary -----------
 # declare noun dictionary 
 nounDict = {}
 # declare freq number
@@ -117,6 +124,13 @@ print('50 Most Common Words and Their Counts:\n')
 for x in range(0, 50):
     print(wordList[x] + ', Count: ' + wordCount[x])
 
-# calculate lexical diversity of the tokenized text
+# ----------- Word Guessing Game -----------
 
+ans = input("Enter 'play' to start or '!' to end game")
+# call function to start word guessing game
+
+# calculate lexical diversity of the tokenized text
+# number of unique tokens / by the total number of tokens
+lexDiv = / 
 # output, formatted to 2 decimal places
+print('Lexical Diversity: ' + round(lexDiv, 2))
