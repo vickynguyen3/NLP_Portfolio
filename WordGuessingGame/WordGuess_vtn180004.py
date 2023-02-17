@@ -60,18 +60,18 @@ def guessGame(wordList):
     total_pts = 5
 
     print("Let's play a word guessing game!")
+    
+    # randomly choose one of the 50 words in the top 50 list 
+    guess_word = random.choice(wordList)
+
+    # char list of the guess word
+    guess_list = [*guess_word]
+    # underscores
+    user_list = [u for u in len(guess_word) * '_']
+
     # player plays as long as it's not a negative total score or guess '!' as a letter
-    while total_pts >= 0 or choice is not '!':
-        # top 50 words
-        wordList = wordList[0:50]
-        
-        # randomly choose one of the 50 words in the top 50 list 
-        guess_word = random.choice(wordList)
-
-        # output to console an "underscore space" for each letter in the word
-        guess_list = [*guess_word]
-        user_list = [u for u in len(guess_word) * '_']
-
+    while total_pts >= 0 :
+        # output "underscore space" for each letter in word
         print(user_list)
 
         # ask the user for a letter
@@ -79,18 +79,31 @@ def guessGame(wordList):
 
         # if the letter is in the word, print 'Right!', fill in all matching letter _ with the letter
         # and add 1 point to their score
-
-        # if the letter is not in the word, subtract 1 from the score, print 'Sorry, guess again'
-
+        if choice in guess_list:
+            total_pts = total_pts + 1
+            print('Right! Score is ' + total_pts)
+        # if the letter is not in the word, subtract 1 from the score, print 'Sorry, guess again'    
+        else:
+            total_pts = total_pts - 1    
+            print('Sorry, guess again. Score is ' + total_pts)
+            
         # guessing for a word ends if the user guesses the word or has a negative score
 
         # keep a cumulative total score and end the game if it is negative (or the user entered '!') for a guess
 
         # right or wrong, give user feedback on their score for this word after each guess
+        
+        
+
+    ans = input('Do you want to play again? (y/n): ')
     
-    # print game over and quit game        
-    print('-- Game Over --')
-    quit()        
+    if ans == 'y':
+        # recurse back to play again
+        return guessGame(wordList)
+    else: 
+        # print game over and quit game        
+        print('-- Game Over --')
+        quit()        
 
 
 # ---------------- main ----------------
@@ -142,5 +155,5 @@ for x in range(0, 50):
 
 # ----------- Word Guessing Game -----------
 
-# call function to start word guessing game
-guessGame(wordList)
+# call function to start word guessing game with the top 50 words
+guessGame(wordList[0:50])
