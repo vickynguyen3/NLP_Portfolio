@@ -7,8 +7,8 @@ import pathlib
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from nlkt.tokenize import word_tokenize
-from nlkt.probability import FreqDist
+from nltk.tokenize import word_tokenize
+from nltk.probability import FreqDist
 
 # function to preprocess raw text
 def processTxt(raw_txt):
@@ -43,9 +43,9 @@ def processTxt(raw_txt):
             nouns.append(lemma)
 
     # print number of tokens 
-    print('Number of Tokens' + str(len(tok_txt)))
+    print('Number of Tokens: ' + str(len(tok_txt)))
     # print number of nouns
-    print('Number of Nouns' + str(len(nouns)))
+    print('Number of Nouns: ' + str(len(nouns)))
 
     # return tokens (not unique tokens) from step a, and nouns from the function
     return tok_txt, nouns 
@@ -102,10 +102,20 @@ nounDict = {}
 nounFreq = FreqDist(tok_txt)
 
 # make a dictionary of {noun:count of noun in tokens} items from the nouns and tokens list
-print('Dictionary: \n' + nounFreq)
+print('Dictionary:')
+print(nounFreq)
 
-# sort dict by count and print the 50 most common words and their counts.
+# sort dict by count 
+wordDict = dict(sorted(nounFreq.items(), key=lambda item : item[1], reverse=True))
+
 # save these words to a list bc they will be used in the guessing game
+wordList = wordDict.keys()
+wordCount = wordDict.values()
+
+# print the 50 most common words and their counts
+print('50 Most Common Words and Their Counts:\n')
+for x in range(0, 50):
+    print(wordList[x] + ', Count: ' + wordCount[x])
 
 # calculate lexical diversity of the tokenized text
 
