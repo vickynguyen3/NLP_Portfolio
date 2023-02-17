@@ -52,14 +52,16 @@ def processTxt(raw_txt):
     # return tokens (not unique tokens) from step a, and nouns from the function
     return tok_txt, nouns 
 
+# helper method
+def match_guess(choice, guess_list, user_list):
+    
+    return user_list
 
 # guessing game function
 def guessGame(wordList):
 
-    # give user 5 points to start with
+    # give player 5 pts to start with
     total_pts = 5
-
-    print("Let's play a word guessing game!")
     
     # randomly choose one of the 50 words in the top 50 list 
     guess_word = random.choice(wordList)
@@ -69,32 +71,48 @@ def guessGame(wordList):
     # underscores
     user_list = [u for u in len(guess_word) * '_']
 
-    # player plays as long as it's not a negative total score or guess '!' as a letter
-    while total_pts >= 0 :
+    print("Let's play a word guessing game!")
+
+    # player plays as long as it's not a negative score or guess '!' as a letter
+    while total_pts > -1:
+        
         # output "underscore space" for each letter in word
         print(user_list)
+        
+        # player solved the word
+        if guess_list == user_list:
+            print('You solved it!\n')
+            print('Current score: ' + total_pts + '\n')
+            break
 
         # ask the user for a letter
         choice = input('Guess a Letter: ')
 
-        # if the letter is in the word, print 'Right!', fill in all matching letter _ with the letter
-        # and add 1 point to their score
-        if choice in guess_list:
-            total_pts = total_pts + 1
-            print('Right! Score is ' + total_pts)
-        # if the letter is not in the word, subtract 1 from the score, print 'Sorry, guess again'    
-        else:
-            total_pts = total_pts - 1    
-            print('Sorry, guess again. Score is ' + total_pts)
+        # end game if player guess '!'
+        if choice == '!':
+            break
+        # if player guessed right
+        elif choice in guess_list:
+
+            # call function to fill in all matching letter _ with the letter
+            user_list = match_guess(choice, guess_list, user_list)
             
-        # guessing for a word ends if the user guesses the word or has a negative score
+            # add points to total score
+            total_pts = total_pts + 1
 
-        # keep a cumulative total score and end the game if it is negative (or the user entered '!') for a guess
+            print('\nRight! Score is ' + total_pts) 
+        # player guessed wrong
+        else:
+            # subtract points to total score
+            total_pts = total_pts - 1   
 
-        # right or wrong, give user feedback on their score for this word after each guess
+            print('\nSorry, guess again. Score is ' + total_pts)
+    # end of while loop
         
-        
+    if total_pts > -1 or choice == '!':
+        print('-- Game Over --')
 
+    # ask if player want to play guessing game again    
     ans = input('Do you want to play again? (y/n): ')
     
     if ans == 'y':
