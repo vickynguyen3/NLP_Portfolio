@@ -23,3 +23,8 @@ input(), capititalize, keys(), search(), etc. I learned how to use
 dictionary and pickle.
 
 [Code is here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Homework1/Homework1_vtn180004.py)
+
+---
+## Word Guessing Game
+
+[Code is here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WordGuessingGame/WordGuess_vtn180004.py)
