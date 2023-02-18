@@ -10,6 +10,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.probability import FreqDist
 import random
+from collections import Counter
 
 # function to preprocess raw text
 def processTxt(raw_txt):
@@ -31,7 +32,7 @@ def processTxt(raw_txt):
     tags = nltk.pos_tag(lemmaList)
 
     # print first 20 tagged
-    print('First 20 Tagged:\n')
+    print('\nFirst 20 Tagged:')
     for x in range(0, 20):
         print(tags[x])
      
@@ -44,22 +45,21 @@ def processTxt(raw_txt):
             nouns.append(lemma)
 
     # print number of tokens 
-    print('Number of Tokens: ' + str(len(tok_txt)))
+    print('\nNumber of Tokens: ' + str(len(tok_txt)))
     # print number of nouns
     print('Number of Nouns: ' + str(len(nouns)))
 
     # return tokens (not unique tokens) from step a, and nouns from the function
     return tok_txt, nouns 
 
-# helper method
+# helper method for guessing game
 def match_guess(choice, guess_list, user_list):
-    idx_found = []
-
+    
     # find index where choice matches in guess_list
     for x in len(guess_list):
         if choice == guess_list[x]:
-            idx_found = x
-    # with the indexes found, update user_list with letter
+            # with the indexes found, update user_list with letter
+            user_list[x] = choice
 
     return user_list
 
@@ -77,7 +77,7 @@ def guessGame(wordList):
     # underscores
     user_list = [u for u in len(guess_word) * '_']
 
-    print("Let's play a word guessing game!")
+    print("\nLet's play a word guessing game!")
 
     # player plays as long as it's not a negative score or guess '!' as a letter
     while total_pts > -1:
@@ -88,7 +88,7 @@ def guessGame(wordList):
         # player solved the word
         if guess_list == user_list:
             print('You solved it!\n')
-            print('Current score: ' + total_pts + '\n')
+            print('Current Score: ' + total_pts + '\n')
             break
 
         # ask the user for a letter
@@ -126,7 +126,7 @@ def guessGame(wordList):
         return guessGame(wordList)
     else: 
         # print game over and quit game        
-        print('-- Game Over --')
+        print('Game Over, Quiting Game...')
         quit()        
 
 
@@ -149,8 +149,9 @@ with open(pathlib.Path.cwd().joinpath(rel_path), 'r') as file:
 # calculate lexical diversity of tokenized text
 # number of unique tokens / by the total number of tokens
 lexDiv = len(set(raw_txt)) / len(raw_txt)
+
 # output, formatted to 2 decimal places
-print('Lexical Diversity: ' + round(lexDiv, 2))
+print('Lexical Diversity: ' + str(round(lexDiv, 2)))
 
 # call function to preprocess the raw text
 tok_txt, nouns = processTxt(raw_txt)
@@ -162,22 +163,19 @@ nounDict = {}
 nounFreq = FreqDist(tok_txt)
 
 # make a dictionary of {noun:count of noun in tokens} items from the nouns and tokens list
-print('Dictionary:')
-print(nounFreq)
-
 # sort dict by count 
 wordDict = dict(sorted(nounFreq.items(), key=lambda item : item[1], reverse=True))
 
 # save these words to a list bc they will be used in the guessing game
 wordList = wordDict.keys()
-wordCount = wordDict.values()
 
 # print the 50 most common words and their counts
-print('50 Most Common Words and Their Counts:\n')
-for x in range(0, 50):
-    print(wordList[x] + ', Count: ' + wordCount[x])
+print('\n50 Most Common Words and Their Counts:')
+
+fiftyCount = wordDict.values()
+print(Counter(tok_txt).most_common(50))
 
 # ----------- Word Guessing Game -----------
 
 # call function to start word guessing game with the top 50 words
-guessGame(wordList[0:50])
+guessGame(list(wordList)[:50])
