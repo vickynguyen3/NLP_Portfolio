@@ -26,5 +26,6 @@ dictionary and pickle.
 
 ---
 ## Word Guessing Game
+A program using Python and NLTK features to explore a text file and create a word guessing game. 
 
 [Code is here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WordGuessingGame/WordGuess_vtn180004.py)
