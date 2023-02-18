@@ -9,7 +9,6 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.probability import FreqDist
-import math
 import random
 
 # function to preprocess raw text
@@ -54,7 +53,14 @@ def processTxt(raw_txt):
 
 # helper method
 def match_guess(choice, guess_list, user_list):
-    
+    idx_found = []
+
+    # find index where choice matches in guess_list
+    for x in len(guess_list):
+        if choice == guess_list[x]:
+            idx_found = x
+    # with the indexes found, update user_list with letter
+
     return user_list
 
 # guessing game function
