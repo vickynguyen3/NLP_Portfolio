@@ -56,7 +56,7 @@ def processTxt(raw_txt):
 def match_guess(choice, guess_list, user_list):
     
     # find index where choice matches in guess_list
-    for x in len(guess_list):
+    for x in range(len(guess_list)):
         if choice == guess_list[x]:
             # with the indexes found, update user_list with letter
             user_list[x] = choice
@@ -68,7 +68,7 @@ def guessGame(wordList):
 
     # give player 5 pts to start with
     total_pts = 5
-    
+    guessed_letters = []
     # randomly choose one of the 50 words in the top 50 list 
     guess_word = random.choice(wordList)
 
@@ -76,9 +76,7 @@ def guessGame(wordList):
     guess_list = [*guess_word]
     # underscores
     user_list = [u for u in len(guess_word) * '_']
-
-    print("\nLet's play a word guessing game!")
-
+    
     # player plays as long as it's not a negative score or guess '!' as a letter
     while total_pts > -1:
         
@@ -88,7 +86,7 @@ def guessGame(wordList):
         # player solved the word
         if guess_list == user_list:
             print('You solved it!\n')
-            print('Current Score: ' + total_pts + '\n')
+            print('Current Score: ' + str(total_pts) + '\n')
             break
 
         # ask the user for a letter
@@ -99,29 +97,35 @@ def guessGame(wordList):
             break
         # if player guessed right
         elif choice in guess_list:
+            # check if letter has not been used already, repeats if player guess same letter
+            if choice not in guessed_letters:
+                # call function to fill in all matching letter _ with the letter
+                user_list = match_guess(choice, guess_list, user_list)
+                
+                # add points to total score
+                total_pts = total_pts + 1
+                guessed_letters.append(choice)
 
-            # call function to fill in all matching letter _ with the letter
-            user_list = match_guess(choice, guess_list, user_list)
-            
-            # add points to total score
-            total_pts = total_pts + 1
-
-            print('\nRight! Score is ' + total_pts) 
+                print('\nRight! Score is ' + str(total_pts)) 
         # player guessed wrong
         else:
             # subtract points to total score
-            total_pts = total_pts - 1   
+            total_pts = total_pts - 1
+            
+            if total_pts < 0:
+                break
 
-            print('\nSorry, guess again. Score is ' + total_pts)
+            print('\nSorry, guess again. Score is ' + str(total_pts))
     # end of while loop
         
-    if total_pts > -1 or choice == '!':
+    if total_pts < 0 or choice == '!':
         print('-- Game Over --')
 
     # ask if player want to play guessing game again    
     ans = input('Do you want to play again? (y/n): ')
     
     if ans == 'y':
+        print('\nGuess another word')
         # recurse back to play again
         return guessGame(wordList)
     else: 
@@ -176,6 +180,8 @@ fiftyCount = wordDict.values()
 print(Counter(tok_txt).most_common(50))
 
 # ----------- Word Guessing Game -----------
+
+print("\nLet's play a word guessing game!")
 
 # call function to start word guessing game with the top 50 words
 guessGame(list(wordList)[:50])
