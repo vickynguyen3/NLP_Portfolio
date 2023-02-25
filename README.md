@@ -29,3 +29,9 @@ dictionary and pickle.
 A program using Python and NLTK features to explore a text file and create a word guessing game. The program first extracts text from a large file that is from a chapter of an anatomy textbook. Then, we would do a preprocessing of the text and calculate the lexical diversity of the tokenized text. Afterwards, we would make a dictionary and output the top 50 most common words and use it for our word guessing game. 
 
 You can find the [code here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WordGuessingGame/WordGuess_vtn180004.py) and the [anatomy text here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WordGuessingGame/anat.txt)
+
+---
+## WordNet Exploration
+I created a Python notebook documenting my experience using WordNet and SentiWordNet from NLTK. I also learned how to identify collocations.
+
+You can find the [notebook here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WordNet-vtn180004.ipynb)
