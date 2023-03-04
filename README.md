@@ -44,7 +44,7 @@ You can find the [paper here](https://github.com/vickynguyen3/NLP_Portfolio/blob
 
 ---
 ## N-Gram Language Model
-Building a language model from ngrams and a reflection on the utility of ngram language models. [Narrative Here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/N-grams/N-GramsNarrative.pdf).
+Building a language model from ngrams and a reflection on the utility of ngram language models. You can find the [Narrative](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/N-grams/N-GramsNarrative.pdf) here.
 
 We created a bigram and unigram dictionaries for English, French, and Italian using the provided training data where the key is the unigram or bigram text. The value is the count of that unigram and bigram in the data. You can find [Program 1](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/N-grams/main.py) here. We also outputted our program's [predictions](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/N-grams/predictions.txt) for each line of text into a file found here.
 
