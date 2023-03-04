@@ -35,3 +35,9 @@ You can find the [code here](https://github.com/vickynguyen3/NLP_Portfolio/blob/
 I created a Python notebook documenting my experience using WordNet and SentiWordNet from NLTK. I also learned how to identify collocations.
 
 You can find the [notebook here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WordNet-vtn180004.ipynb)
+
+---
+## Sentence Parsing
+Drawings to understand the concepts related to sentence syntax as well as understand and utilize the 3 types of sentences parses: PSG, dependency, and SRL. 
+
+You can find the [paper here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/parsingsentences-vtn180004.pdf)
