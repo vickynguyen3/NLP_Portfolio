@@ -41,3 +41,10 @@ You can find the [notebook here](https://github.com/vickynguyen3/NLP_Portfolio/b
 Drawings to understand the concepts related to sentence syntax as well as understand and utilize the 3 types of sentences parses: PSG, dependency, and SRL. 
 
 You can find the [paper here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/parsingsentences-vtn180004.pdf)
+
+---
+## N-Gram Language Model
+Building a language model from ngrams and a reflection on the utility of ngram language models.
+We created a bigram and unigram dictionaries for English, French, and Italian using the provided training data where the key is the unigram or bigram text. The value is the count of that unigram and bigram in the data. We then calculate the probabilities for each langauge and compare against the true labels.
+
+You can find the [code here]()
