@@ -49,7 +49,7 @@ def scrapeTxt(url_list):
     return
 
 # --------- main ---------
-# Topic - Hayao Miyazaki
+# Topic - anime
 
 # starts with a URL representing topic
 starter_url = "https://en.wikipedia.org/wiki/Hayao_Miyazaki"
