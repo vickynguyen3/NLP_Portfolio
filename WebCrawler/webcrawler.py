@@ -1,5 +1,5 @@
 # Vicky Nguyen, vtn180004
-# Meinhard C,
+# Meinhard Capucao, mdc190005
 # CS 4395.001
 
 from bs4 import BeautifulSoup
