@@ -53,4 +53,4 @@ We then calculate the probabilities for each langauge and compare against the tr
 ---
 ## Web Crawler
 
-Creating a simple web crawler [program](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WebCrawler/webcrawler.py) that starts off with a given URL, and scrapes the texts from other URLs on that page. Our topic was about anime
+Creating a simple web crawler [program](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WebCrawler/webcrawler.py) that starts off with a given URL, and scrapes the texts from other URLs on that page. Our topic was about anime and we used TF-IDF to analyze the text files in our [program](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WebCrawler/importantterms.py) to find important terms
