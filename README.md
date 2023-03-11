@@ -55,6 +55,6 @@ We then calculate the probabilities for each langauge and compare against the tr
 
 Creating a simple web crawler [program](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WebCrawler/webcrawler.py) that starts off with a given URL, and scrapes the texts from other URLs on that page. We chose our starter URL to be a wikipedia of Hayao Miyazaki, and chose the topic to be about anime.
 
-We analyzed our scrape data by using TF-IDF to find the most important terms relating to our topic in our [program](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WebCrawler/importantterms.py). The program then pickles the facts to a dictionary and text file, which can be found here. 
+We analyzed our scrape data by using TF-IDF to find the most important terms relating to our topic in our [program](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WebCrawler/importantterms.py). The program then pickles the [facts](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WebCrawler/facts.txt) to a dictionary and text file, which can be found here.
 
 [Read Me - Web Crawler](https://github.com/meintgl/NLP-Portfolio/blob/main/Webcrawler_mdc190005/readme.md)
