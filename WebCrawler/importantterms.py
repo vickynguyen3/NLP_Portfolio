@@ -1,3 +1,8 @@
+# Vicky Nguyen, vtn180004
+# Meinhard C, mdc190005
+# CS 4395.001
+
+
 import math
 import nltk
 import requests
@@ -164,23 +169,17 @@ for doc_name, tfidf_doc in tfidf_docs.items():
     anime_terms.extend(
         [term for term, weight in doc_term_weights[:10] if term not in anime_terms and term[0].isupper()])
 
-    # adds next 6 non anime terms (lowercase start) if it is not already there
-    non_anime_terms.extend([term for term, weight in doc_term_weights[:6]
+    # adds next 10 non anime terms (lowercase start)
+    non_anime_terms.extend([term for term, weight in doc_term_weights[:10]
                             if term not in non_anime_terms and term[0].islower()])
 
 
-# Remove some terms that don't make sense, or arent as important
-non_anime_terms.remove("comments")
-non_anime_terms.remove("says")
-non_anime_terms.remove("wants")
-non_anime_terms.remove("views")
-non_anime_terms.remove("session")
-non_anime_terms.remove("stated")
-non_anime_terms.remove("index")
-non_anime_terms.remove("store")
-non_anime_terms.remove("women")
+print(f"{len(non_anime_terms)} important term words that aren't anime titles, according to tdf-idf: ", non_anime_terms)
 
-print("10 important term words that aren't anime titles, according to tdf-idf: ", non_anime_terms)
+# Remove some terms that don't make sense, or arent as important. Set 10 most!
+non_anime_terms = ['sushi', 'winner', 'love', 'greatest', 'awards', 'animated', 'cultural', 'highest', 'newest', 'film']
+
+print("10 most important term words that aren't anime titles, according to us: ", non_anime_terms)
 
 fact_dict = {}  # Create a dictionary of facts
 
