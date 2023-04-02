@@ -58,3 +58,8 @@ Creating a simple web crawler [program](https://github.com/vickynguyen3/NLP_Port
 We analyzed our scrape data by using TF-IDF to find the most important terms relating to our topic in our [program](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WebCrawler/importantterms.py). The program then pickles the [facts](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/WebCrawler/facts.txt) to a dictionary and text file, which can be found here.
 
 [Read Me - Web Crawler](https://github.com/meintgl/NLP-Portfolio/blob/main/Webcrawler_mdc190005/readme.md)
+
+--
+## SKLearn and Text Classification
+
+[Python notebook](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Sklearn/textclass-vtn180004.ipynb) that documents my experiences using text classification by using a data set from Kaggle that involved tweets related to COVID-19 and made attempts to use ML algorithms such as Naive Bayes, Logistics Regression, and Neural Networks.
