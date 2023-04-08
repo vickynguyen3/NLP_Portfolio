@@ -63,3 +63,7 @@ We analyzed our scrape data by using TF-IDF to find the most important terms rel
 ## SKLearn and Text Classification
 
 [Python notebook](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Sklearn/textclass-vtn180004.ipynb) that documents my experiences using text classification by using a data set from Kaggle that involved tweets related to COVID-19 and made attempts to use ML algorithms such as Naive Bayes, Logistics Regression, and Neural Networks.
+
+--
+## ACL Paper Summary
+It a summary of the ACL Paper, “Perceiving the World: Question-guided Reinforcement Learning for Text-based Games”. You can find it [here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/CS4395.001ACL.pdf)
