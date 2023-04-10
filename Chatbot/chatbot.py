@@ -4,10 +4,15 @@
 
 import nltk
 from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
+from nltk.stem.lancaster import LancasterStemmer
 from nltk.stem import WordNetLemmatizer
-import numpy
+from nltk.corpus import stopwords
+import numpy as np
 import random
 import json
 import pickle
+import sklearn
+from sklearn.neural_network import MLPClassifier
+import os
+
 
