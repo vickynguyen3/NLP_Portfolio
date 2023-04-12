@@ -7,7 +7,7 @@
     "context_set" : [""]
     },
     
-    { "tag": "welcomeback",
+    { "tag": "welcome_back",
     "patterns": ["i am back", "i back", "i'm back", "back", "did you miss me", "i've returned", "i have returned"],
     "responses": ["Welcome back!", "Good to see you again.", "I missed you!", "I'm glad you're back!"],
     "context_req": [""],
