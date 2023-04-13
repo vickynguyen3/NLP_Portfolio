@@ -29,8 +29,12 @@ documents = []
 ignore_punct = ['?', '.', ',', '!']
 
 # loop through each sentence in our intents patterns
-for intent in intents['intents']:
-    for pattern in intent['patterns']:
+for i in intents['intents']:
+    for pattern in i['patterns']:
+        
+        print(f'intent working on: {i["tag"]}')
+        print(f'pattern working on: {pattern}')
+        
         # tokenize each word
         pw = word_tokenize(pattern)
         
@@ -38,19 +42,23 @@ for intent in intents['intents']:
         words.extend(pw)
 
         # add to documents in our corpus
-        documents.append((pw, intent['tag']))
+        documents.append((pw, i['tag']))
 
         # add to our classes list
-        if intent['tag'] not in classes:
-            classes.append(intent['tag'])
+        if i['tag'] not in classes:
+            classes.append(i['tag'])
 
-# lemmatize and lower each word
+# stem and lower each word
 stemmer = LancasterStemmer()
 words = [stemmer.stem(pw.lower()) for pw in words if pw not in ignore_punct and pw not in stopwords]
 
 # remove duplicates
 words = sorted(set(words))
 classes = sorted(set(classes))
+
+print(f'NUMBER OF DOCUMENTS: {len(documents)}')
+print(f'NUMBER OF CLASSES: {len(classes)}', classes)
+print(f'UNIQUE LEMMAS: {len(words)}', words)
 
 # training data variables
 training = []
@@ -61,22 +69,17 @@ empty_arr = [0] * len(classes)
 
 # training set, bag of words for each sentence
 for doc in documents:
-    # initialize bag of words
     word_bag = []
-    # list of tokenized words for the pattern
     pattern_words = doc[0]
 
-    # lemmatize each word - create base word, in attempt to represent related words
     pattern_words = [stemmer.stem(word.lower()) for word in pattern_words if word not in list(stopwords)]
 
-    # create bag of words array w/ 1, if word match found in current pattern
     for word in words:
         if word in pattern_words:
             word_bag.append(1)
         else:
             word_bag.append(0)
 
-    # output is a '0' for each tag and '1' for current tag (for each pattern)
     output_row = list(empty_arr)
     output_row[classes.index(doc[1])] = 1
 
@@ -91,6 +94,7 @@ training = np.array(training)
 train_x = list(training[:,0])
 train_y = list(training[:,1])
 
+# --------------------------------- MODEL TRAINING ---------------------------------
 from sklearn.metrics import accuracy_score
 from sklearn.neural_network import MLPClassifier
 
@@ -104,3 +108,60 @@ pickle.dump(neural_model, open('neural_model.pkl', 'wb'))
 # save all of our data structures
 pickle.dump({'words':words, 'classes':classes, 'train_x':train_x, 'train_y':train_y}, open('training_data.pkl', 'wb'))
 
+# --------------------------------- 
+
+def clean_up_sentence(sentence):
+
+    # tokenize pattern
+    sentence_words = word_tokenize(sentence)
+
+    # stem each word
+    stemmer = LancasterStemmer()
+    sentence_words = [stemmer.stem(word.lower()) for word in sentence_words if word.isalpha() and word not in stopwords]
+
+    return sentence_words
+
+def bag_of_words(sentence, words):
+    # clean sentence
+    sentence_words = clean_up_sentence(sentence)
+
+    # bag of words
+    bag = [0]*len(words)
+
+    for s in sentence_words:
+        for i, word in enumerate(words):
+            if word == s:
+                bag[i] = 1
+                
+    return(np.array(bag))
+
+# predict the intent using a bag of words, returns descending list of probable responses
+def classify(sentence):
+    print(f'sentence: {sentence}')
+    ERR_MARGIN = 0.25
+
+    # generate probabilities from the model
+    model_results = neural_model.predict([bag_of_words(sentence, words)])[0]
+    # filter out predictions below a threshold/margin
+    model_results = [[i, r] for i, r in enumerate(model_results) if r > ERR_MARGIN]
+
+    # sort by strength of probability and reverse it to descending order so most probable is first
+    model_results.sort(key = lambda x: x[1], reverse = True)
+    
+    return_list = []
+
+    for r in model_results:
+        return_list.append((classes[r[0]], r[1]))
+    print(f'return list: {return_list}')
+
+    return return_list
+
+debug = True
+if (debug):
+    classify('what is your name')
+    classify('hi')
+    classify('what')
+
+    while True:
+        user_input = input('>>: ')
+        classify(user_input)

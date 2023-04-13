@@ -45,6 +45,9 @@ class User:
 
 cur_user = User('default')
 
+# --------------------- MODIFY LIKES AND DISLIKES METHODS ---------------------
+
+# modify likes
 def mod_likes(word, mode = 'append'):
     global cur_user
 
@@ -54,15 +57,18 @@ def mod_likes(word, mode = 'append'):
 
         # append word to likes list
         cur_user.likes.append(word)
+        
         return True
-    elif mode == 'remove' and word in cur_user.likes:
+    
+    if mode == 'remove' and word in cur_user.likes:
         # remove word from likes list
         cur_user.likes.remove(word)
+        
         return True
-    else:
-        # word is already in list
-        return False
     
+    return False
+
+# modify dislikes
 def mod_dislikes(word, mode = 'append'):
     global cur_user
 
@@ -72,14 +78,31 @@ def mod_dislikes(word, mode = 'append'):
         
         # append word to dislikes list
         cur_user.dislikes.append(word)
+
         return True
-    elif mode == 'remove' and word in cur_user.dislikes:
+    
+    if mode == 'remove' and word in cur_user.dislikes:
         # remove word from dislikes list
         cur_user.dislikes.remove(word)
+
         return True
+    
+    return False
+
+# --------------------- SENTIMENT ANALYSIS METHODS ---------------------
+
+def sentiment_scores(sentence):
+    sid_obj = SentimentIntensityAnalyzer()
+    sentiment_dict = sid_obj.polarity_scores(sentence)
+
+    if sentiment_dict['compound'] >= 0.05:
+        return("Positive")
+    elif sentiment_dict['compound'] <= - 0.05:
+        return("Negative")
     else:
-        # word is already in list
-        return False
+        return("Objective")
+    
+# ---------------------  SUBJECTS & CONTEXT METHODS ---------------------
 
 # helper method to reverse lemmatization of a word and return the original word in the dictionary    
 def get_lemmatized_index(lemma):
@@ -90,41 +113,25 @@ def get_lemmatized_index(lemma):
 
 # return subjects of a sentence
 def get_subjects(sentence):
-
-    # NEED TO ADD MORE LABELS
-    # NEED TO ADD MORE LABELS
-    labels = ['lsubj']
+    labels = ['nsubj', 'nsubjpass', 'csubj', 'csubjpass', 'pobj', 'dobj', 'acomp']
     doc = sp(sentence)
-    subject_tok = [token.text for token in doc if token.dep_ in labels]
 
+    subject_tok = [token.text for token in doc if token.dep_ in labels]
     subject_tok.reverse()
+
     return subject_tok
 
 # get one subject from list of possible subjects of a sentence
 def get_one_subject(sentence):
     # get list of subjects
     tok = get_subjects(sentence)
+
     # return first subject in list
     lemma = tok[0]
+
     return lemma
 
-def sentiment_scores(sentence):
-    sid_obj = SentimentIntensityAnalyzer()
-    sentiment_dict = sid_obj.polarity_scores(sentence)
 
-    # print("Overall sentiment dictionary is : ", sentiment_dict)
-    # print("sentence was rated as ", sentiment_dict['neg']*100, "% Negative")
-    # print("sentence was rated as ", sentiment_dict['neu']*100, "% Neutral")
-    # print("sentence was rated as ", sentiment_dict['pos']*100, "% Positive")
-
-    # print("Sentence Overall Rated As", end = " ")
-    if sentiment_dict['compound'] >= 0.05:
-        return("Positive")
-    elif sentiment_dict['compound'] <= - 0.05:
-        return("Negative")
-    else:
-        return("Objective")
-    
 def match_subjects(sentence):
     global knowledge_terms
 
@@ -133,14 +140,15 @@ def match_subjects(sentence):
     terms_lemma = [lemmatizer.lemmatize(term) for term in knowledge_terms]
     print(terms_lemma)
 
-    # lemmatize subjects and check if they are in the knowledge base
+    # lemmatize subjects and compare word to the knowledge base
     for subject in toks:
         subject_lemma = lemmatizer.lemmatize(subject)
         
         print('subject lemma: ', subject_lemma)
         
+        # check if sentence contains a subject that is in knowledge base
         if subject_lemma in terms_lemma:
-            # return a random sentence from the knowledge base
+            # return a random sentence from knowledge base
             return random.choice(knowledge_base[get_lemmatized_index(subject_lemma)])
 
     # no matches found, default to standard response
@@ -148,55 +156,58 @@ def match_subjects(sentence):
 
 def match_context(lst):
     global context
-    # check if any of the contexts in the list are in the current context
+   
+    # check if the user has at least one qualifying contexts for intent
     for cntxt in lst:
-        # if context is in the list of contexts
         if cntxt in context:
             return True
+    
     return False
 
 def clean_up_sentence(sentence):
-    # tokenize the pattern - split words into array
-    sentence_words = nltk.word_tokenize(sentence)
+    # tokenize pattern
+    sentence_words = word_tokenize(sentence)
 
-    # stem each word - create short form for word
+    # stem each word
     stemmer = LancasterStemmer
     sentence_words = [stemmer.stem(word.lower()) for word in sentence_words if word.isalpha() and word not in stopwords]
     
     return sentence_words
 
 def bag_of_words(sentence, words):
-    # tokenize the pattern
+    # clean sentence
     sentence_words = clean_up_sentence(sentence)
 
-    # bag of words - matrix of N words, vocabulary matrix
+    # bag of words
     bag = [0] * len(words)
 
+    # mark which words are in the sentence
     for s in sentence_words:
-        for i, w in enumerate(words):
-            if w == s:
-                # assign 1 if current word is in the vocabulary position
+        for i, word in enumerate(words):
+            if word == s:
                 bag[i] = 1
 
     return np.array(bag)
 
+# predict the intent using a bag of words, returns descending list of probable responses
 def classify(sentence):
-
-    err_margin = 0.25
+    print(f'sentence: {sentence}')
+    ERR_MARGIN = 0.25
 
     # generate probabilities from the model
     model_results = model.predict([bag_of_words(sentence, words)])[0]
-    # filter out predictions below a threshold
-    model_results = [[i, r] for i, r in enumerate(model_results) if r > err_margin]
+    # filter out predictions below a threshold/margin
+    model_results = [[i, r] for i, r in enumerate(model_results) if r > ERR_MARGIN]
 
-    # sort by strength of probability
+    # sort by strength of probability and reverse it to descending order so most probable is first
     model_results.sort(key = lambda x: x[1], reverse = True)
+    
     return_list = []
 
     for r in model_results:
         return_list.append((classes[r[0]], r[1]))
     print(f'return list: {return_list}')
-    # return tuple of intent and probability
+
     return return_list
 
 # --------------------- USER RESPONSE ---------------------
@@ -358,7 +369,37 @@ if debug:
 
 # CHATBOT GUI
 
+
 # create GUI
 root = Tk()
 root.title('Chatbot')
 
+BG_GRAY = "#ABB2B9"
+BG_COLOR = "#17202A"
+TEXT_COLOR = "#EAECEE"
+
+FONT = "Helvetica 14"
+FONT_BOLD = "Helvetica 13 bold"
+
+first_time = True
+
+def send():
+    global first_time
+
+    if first_time:
+        send = '>>' + e.get()
+        txt.insert(END, '\n' + send)
+        txt.insert(END, '\n' + get_usrname(e.get()))
+        e.delete(0, END)
+        first_time = False
+    else:
+        send = '>>' + e.get()
+        txt.insert(END, '\n' + send)
+        txt.insert(END, '\n' + response(e.get()))
+        e.delete(0, END)
+
+    # check for exit flag
+    if exit():
+        root.quit()
+
+# GUI layout
