@@ -1,0 +1,94 @@
+BEGIN WAYBACK TOOLBAR INSERT 131 captures 12 Oct 2009 - 30 Jan 2023 NEXT/PREV MONTH NAV AND MONTH INDICATOR Mar JUN Sep NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR 02 NEXT/PREV YEAR NAV AND YEAR INDICATOR 2020 2021 2022 success fail About this capture COLLECTED BY Collection: Wikipedia Eventstream TIMESTAMPS The Wayback Machine - https://web.archive.org/web/20210602230108/http://www.vangoghletters.org/vg/letters/let034/letter.html END WAYBACK TOOLBAR INSERT Google Tag Manager End Google Tag Manager 034 To Theo van Gogh.
+Paris, Monday, 31 May 1875.
+Original text +line endings facsimile translations notes works of art Original text +line endings facsimile translations notes works of art close new tab Original text +line endings facsimile translations notes works of art close new tab Original text +line endings facsimile translations notes works of art close new tab 1r:1 [Letterhead: Goupil Paris] Paris, 31 May 1875 My dear Theo, Thanks for your letter of this morning.
+Yesterday I saw the Corot exhibition.
+1 It included a painting of the ‘Mount of Olives’; 2 I’m glad he painted that.
+On the right, a group of olive trees, dark against the darkening blue sky; in the background hills covered with shrubs and a couple of tall trees, above them the evening star.
+There are 3 Corots at the Salon, very beautiful, the most beautiful one, painted shortly before his death, ‘Women cutting wood’, will probably appear as a woodcut in L’Illustration or Le Monde Illustré.
+3 I’ve also seen the Louvre and the Luxembourg, as you can imagine.
+The Ruisdael s in the Louvre are magnificent, especially ‘The bush’, ‘The breakwater’ and ‘The ray of sunlight’.
+4 1r:2 I wish you could see the small Rembrandt s there, the ‘Supper at Emmaus’, 5 and two pendants, ‘The philosophers’.
+6 I recently saw Jules Breton with his wife and two daughters.
+7 Physically he reminded me of J. Maris , though he has dark hair.
+When I have the chance I’ll send you a book of his, ‘Les champs et la mer’, which contains all his poems.
+8 He has a beautiful painting at the Salon, ‘The feast of St John’, peasant girls dancing on a summer evening round the St John’s bonfire, in the background the village with its church and the moon above it.
+9 Dance, young maidens, dance, As you sing your songs of love!
+Tomorrow, at break of day, You’ll go, hastening to ply your sickles.
+10 There are now 3 paintings by him in the Luxembourg.
+‘Procession through a cornfield’, ‘Women gleaning’ and ‘Alone’.
+11 Adieu Vincent 034 | Show metadata Br.
+1990: 034 | CL: 27 From: Vincent van Gogh To: Theo van Gogh Date: Paris, Monday, 31 May 1875 more...
+Source status: Original manuscript Location: Amsterdam, Van Gogh Museum, inv.
+no.
+b36 V/1962 Date: Letter headed: ‘ [ Paris, le ] 31 Mai [ 187 ] 5’.
+om te zorgen dat de elementen met position:absolute niet verdwijnen in IE 033 | 035 Search this letter print close Original text ... naar Holland kom ... ... van Holland naar...
+Translation Notes Artwork close 034 To Theo van Gogh.
+Paris, Monday, 31 May 1875.
+1r 1v close title 034 To Theo van Gogh.
+Paris, Monday, 31 May 1875. close 1.
+Shortly after the death of Jean Baptiste Camille Corot , a retrospective exhibition of his work was held in the Ecole Nationale des Beaux-Arts.
+There were 226 works on display.
+2.
+The painting Van Gogh mentions is Christ on the Mount of Olives , 1849 (Langres, Musée d’Art et d’Histoire de Langres).
+Ill. 1705 .
+See exhib.
+cat.
+Paris 1875-2, p. 52, cat.
+no.
+96.
+3.
+The Corot s at the Salon of 1875 were: Women cutting wood , Pleasures of the evening (danse antique) and Biblis , all dating from 1874-1875 (present whereabouts unknown).
+The wood engraving Bûcheronnes (Women cutting wood) by Auguste Joliet was later published in Le Monde Illustré 24 (5 June 1880), p. 348.
+Ill. 1706 .
+Exhib.
+cat.. Paris 1875-1, p. 77, cat.
+nos.
+519-521; Robaut 1965, vol.
+1, p. 33; vol.
+3, pp.
+322-327, cat.
+nos.
+2195-2197.
+4.
+The paintings in question are Jacob van Ruisdael ’s The bush ; The storm (this is what Van Gogh probably had in mind when he mentioned L’estacade (The breakwater) – called L’estacade aux eaux rousses (The breakwater with russet waters) in letter 325 ; and finally, The ray of sunlight (Paris, Musée du Louvre).
+Ill. 1707 , ill. 1708 and ill. 1709 .
+5.
+Rembrandt , The pilgrims at Emmaus , 1648 (Paris, Musée du Louvre) measures 68 x 65 cm.
+Ill. 1710 .
+6.
+Rembrandt , Philosopher in meditation ( An old man in an interior with winding staircase ), 1632 and Philosopher with an open book ( The philosopher in contemplation ), c. 1640-1645 (Paris, Musée du Louvre).
+They measure 28 x 34 cm and 28.2 x 34.4 cm, respectively.
+Ill. 1711 and ill. 1712 .
+The attributions of these works are now disputed: see Bruyn 1986, vol.
+2, pp.
+638-644, no.
+C51.
+The second painting has been attributed to Salomon Koninck.
+7.
+On 29 April 1858, Jules Breton married Elodie Breton-De Vigne , the daughter of Breton’s former teacher Félix De Vigne .
+Contrary to what Van Gogh thought, they had but one daughter, Virginie , who was also Breton’s only pupil.
+She grew up with her cousin Julie, whom Van Gogh had presumably taken to be a daughter of Breton.
+Cf.
+exhib.
+cat.
+Omaha 1982, pp.
+114-115, cat.
+no.
+77.
+8.
+Jules Breton , Les champs et la mer .
+Paris 1875.
+9.
+Jules Breton, The feast of Saint John , 1875 (private collection).
+Ill. 1713 .
+10.
+The lines are the last stanza of the poem ‘ La Saint-Jean ’, taken from Breton 1875, pp.
+55-57 (quotation on p. 57).
+11.
+The first of these paintings by Jules Breton in the Musée du Luxembourg is The blessing of the corn in Artois ( Procession through a cornfield ), 1857 (Arras, Musée des Beaux-Arts d’Arras, Ancienne Abbaye Saint Vaast).
+Ill. 1714 ; the second is Calling home the gleaners , 1859 (Paris, Musée d’Orsay).
+Ill. 1715 .
+Alone actually refers to Evening , 1860 (Cuisery, Saône-et-Loine, Hôtel de Ville).
+Ill. 1716 .
+Breton sometimes referred to the last work as ‘my alone’.
+Vincent van Gogh, The Letters by period by correspondent by place with sketches Search Advanced search Search results Van Gogh as letter-writer Correspondents Biographical & historical context Publication history About webedition Chronology Concordance, lists, bibliography Book edition Van Gogh Museum Huygens ING Help Quick guide Updates Credits Contact Home Copyright Disclaimer Book edition
