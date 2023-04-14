@@ -28,7 +28,7 @@ documents = []
 # list of ignored punctuation
 ignore_punct = ['?', '.', ',', '!']
 
-# loop through each sentence in our intents patterns
+# intents patterns
 for i in intents['intents']:
     for pattern in i['patterns']:
         
@@ -56,6 +56,7 @@ words = [stemmer.stem(pw.lower()) for pw in words if pw not in ignore_punct and 
 words = sorted(set(words))
 classes = sorted(set(classes))
 
+# checking to see if everything is working
 print(f'NUMBER OF DOCUMENTS: {len(documents)}')
 print(f'NUMBER OF CLASSES: {len(classes)}', classes)
 print(f'UNIQUE LEMMAS: {len(words)}', words)
