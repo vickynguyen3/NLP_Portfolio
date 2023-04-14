@@ -2,7 +2,7 @@
     
     { "tag": "greeting",
     "patterns": ["hi", "hello", "how are you", "what's up", "good day", "hey", "yo", "sup", "howdy", "hola", "greetings", "good morning", "good afternoon", "good evening", "morning"],
-    "responses": ["Hello~", "Hi there!"],
+    "responses": ["Hello ~", "Hi there!"],
     "context_req": [""],
     "context_set" : [""]
     },
@@ -16,21 +16,21 @@
 
     { "tag": "intro",
     "patterns": ["what's your name", "what should i call you", "who are you", "what are you", "what do i call you", "what is your name", "tell me about yourself", "your name", "name"],
-    "responses": ["My name is Van Gogh Enthusiast", "The name is Van Gogh Enthusiast", "Van Gogh Enthusiast!"],
+    "responses": ["My name is Van Gogh Bot", "The name is Van Gogh Bot", "Van Gogh Bot!"],
     "context_req": [""],
     "context_set" : [""]
     },
 
-    { "tag": "goodbye",
+    { "tag": "bye",
     "patterns": ["bye", "see you later", "goodbye", "i'm leaving", "bye bye", "good bye", "see you", "later", "peace out"],
-    "responses": ["Goodbye~", "See you next time.", "Bye!"],
+    "responses": ["Goodbye~", "Hope to see you next time!", "Bye!"],
     "context_req": [""],
     "context_set" : [""]
     },
 
     { "tag": "thanks",
     "patterns": ["thank you", "thanks"],
-    "responses": ["You're welcome.", "No problem.", "My pleasure.", "Of course."],
+    "responses": ["You're welcome!", "No problem ~", "My pleasure!", "Of course!"],
     "context_req": [""],
     "context_set" : [""]
     },
@@ -44,35 +44,35 @@
 
     { "tag": "options",
     "patterns": ["yes", "yea", "ye", "sure", "okay", "ok", "oki", "what do you do", "what can you do", "what do you know", "what can i learn", "teach me something"],
-    "responses": ["I know a few facts about Van Gogh"],
+    "responses": ["I know a few facts about Van Gogh: van gogh, love, starry night, sunflowers, theo, artist, museum, asylum, works, paintings"],
     "context_req": ["asktopics"],
     "context_set" : ["topics"]
     },
 
-    { "tag": "otheroptions",
-     "patterns":["no","no i do not", "no i don't", "not really", "sorry", "nope", "nah"],
-     "responses":["You're missing out, just ask me to teach you!"],
-     "context_req":["asktopics"],
-     "context_set":[""]
-    },
-
     { "tag": "options2",
      "patterns": ["what do you do", "what can you do", "what do you know", "what can i learn", "teach me something"],
-     "responses": ["I know a few facts about Van Gogh"],
+     "responses": ["I know a few facts about Van Gogh: van gogh, love, starry night, sunflowers, theo, artist, museum, asylum, works, paintings"],
      "context_req": [""],
      "context_set" : ["topics"]
     },
 
+    { "tag": "otheroptions",
+     "patterns":["no","no i do not", "no i don't", "not really", "sorry", "nope", "nah"],
+     "responses":["You're missing out, just ask me to teach you some facts ~"],
+     "context_req":["asktopics"],
+     "context_set":[""]
+    },
+
     { "tag": "likes",
     "patterns": ["what do i like", "what am i interested in", "what are my interests", "what do you know about me", "do you know what i like", "what do i love"],
-    "responses": ["I think you seem interested in the term "],
+    "responses": ["I think you seem interested in "],
     "context_req": [""],
     "context_set": [""]
     },
 
     { "tag": "dislikes",
      "patterns": ["what do i not like", "what do i dislike", "what do i hate", "what don't i like", "what i don't like", "don't", "dont", "do not", "not"],
-     "responses": ["I think you don't seem interested in the term "],
+     "responses": ["I think you don't seem interested in "],
      "context_req": [""],
      "context_set": [""]
     }

@@ -6,4 +6,6 @@
 
 [2.] In a terminal, please run the following command:
 
-''' pip install -r '''
+''' 
+pip install -r 
+'''

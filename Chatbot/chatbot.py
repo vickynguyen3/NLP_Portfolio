@@ -28,15 +28,19 @@ lemmatizer = WordNetLemmatizer()
 
 # dictionary 
 # {word: sentences that contain the word}
-knowledge_base = pickle.load(open('knowledge_base.pkl', 'rb'))
+knowledge_base = pickle.load(open('knowledge_base.p', 'rb'))
 
 # lemmatize words in knowledge base
-knowledge_terms = knowledge_base.keys()
+knowledge_facts = knowledge_base.keys()
 
-print(knowledge_terms)
+# test
+print(knowledge_facts)
 
+# NLP for dependency parsing
 sp = spacy.load('en_core_web_sm')
 
+
+# --------------------- USER CONSTRUCTOR ---------------------
 class User:
     def __init__(self, name):
         self.name = name
@@ -45,7 +49,7 @@ class User:
 
 cur_user = User('default')
 
-# --------------------- MODIFY LIKES AND DISLIKES METHODS ---------------------
+# --------------------- MODIFY LIKES & DISLIKES METHODS ---------------------
 
 # modify likes
 def mod_likes(word, mode = 'append'):
@@ -91,6 +95,7 @@ def mod_dislikes(word, mode = 'append'):
 
 # --------------------- SENTIMENT ANALYSIS METHODS ---------------------
 
+# use vader sentiment analysis to determine if a sentence is positive, negative, or objective
 def sentiment_scores(sentence):
     sid_obj = SentimentIntensityAnalyzer()
     sentiment_dict = sid_obj.polarity_scores(sentence)
@@ -104,19 +109,24 @@ def sentiment_scores(sentence):
     
 # ---------------------  SUBJECTS & CONTEXT METHODS ---------------------
 
-# helper method to reverse lemmatization of a word and return the original word in the dictionary    
+# helper method to reverse lemmatization of a word and find the corresponding key in dictionary
 def get_lemmatized_index(lemma):
-    for term in knowledge_terms:
-        if lemmatizer.lemmatize(term) == lemma:
-            return term
+    for key in knowledge_facts:
+        if lemmatizer.lemmatize(key) == lemma:
+            return key
         
 
 # return subjects of a sentence
 def get_subjects(sentence):
     labels = ['nsubj', 'nsubjpass', 'csubj', 'csubjpass', 'pobj', 'dobj', 'acomp']
+    # spacy dependency parsing
     doc = sp(sentence)
 
     subject_tok = [token.text for token in doc if token.dep_ in labels]
+    
+    # test
+    print('subject tokens: ', subject_tok)
+
     subject_tok.reverse()
 
     return subject_tok
@@ -133,23 +143,23 @@ def get_one_subject(sentence):
 
 
 def match_subjects(sentence):
-    global knowledge_terms
+    global knowledge_facts
 
     toks = get_subjects(sentence)
 
-    terms_lemma = [lemmatizer.lemmatize(term) for term in knowledge_terms]
-    print(terms_lemma)
+    lemma_facts = [lemmatizer.lemmatize(fact) for fact in knowledge_facts]
+    print(lemma_facts)
 
     # lemmatize subjects and compare word to the knowledge base
-    for subject in toks:
-        subject_lemma = lemmatizer.lemmatize(subject)
+    for subj in toks:
+        lemma_subject = lemmatizer.lemmatize(subj)
         
-        print('subject lemma: ', subject_lemma)
+        print('lemma subject: ', lemma_subject)
         
         # check if sentence contains a subject that is in knowledge base
-        if subject_lemma in terms_lemma:
+        if lemma_subject in lemma_facts:
             # return a random sentence from knowledge base
-            return random.choice(knowledge_base[get_lemmatized_index(subject_lemma)])
+            return random.choice(knowledge_base[get_lemmatized_index(lemma_subject)])
 
     # no matches found, default to standard response
     return None
@@ -157,7 +167,7 @@ def match_subjects(sentence):
 def match_context(lst):
     global context
    
-    # check if the user has at least one qualifying contexts for intent
+    # check if user has at least one qualifying contexts for intent
     for cntxt in lst:
         if cntxt in context:
             return True
@@ -217,14 +227,17 @@ def response(sentence):
     global bye
     global cur_user
 
+    # test
     print(f'cur context: {context}')
 
-    # generate probabilities from the model
+    # get response results
     response_results = classify(sentence)
+
+    # test
     print(f'response results: {response_results}')
     
     if response_results:
-        # loop as long as there are matches to process
+
         while response_results:
 
             for i in intents['intents']:
@@ -232,78 +245,101 @@ def response(sentence):
                 # find a tag matching the first result
                 if i['tag'] == response_results[0][0]:
 
+                    # test
                     print(f'len(get_subjects: {len(get_subjects(sentence))}')
                     print(f'match_subjects: {match_subjects(sentence)}')
 
                     # check for strong sentiments of words in knowledge base before using knowledge base and intents
                     if sentiment_scores(sentence) == 'Negative' and len(get_subjects(sentence)) > 0 and match_subjects(sentence) != None:
+                        # test
                         print('negative')
 
                         lemma = get_one_subject(sentence)
                         mod_dislikes(lemma, mode = 'append')
+                        
                         return 'I\'m sorry to hear that. I\'ll keep that in mind!'
+                    
                     elif sentiment_scores(sentence) == 'Positive' and len(get_subjects(sentence)) > 0 and match_subjects(sentence) != None:
+                        # test
                         print('positive')
 
                         lemma = get_one_subject(sentence)
                         mod_likes(lemma, mode = 'append')
-                        return 'I\'m glad to hear that. I\'ll keep that in mind!'
+                        
+                        return 'I\'m happy to hear that! I\'ll keep that in mind!'
+                    
                     else:
                         subject_match = match_subjects(sentence)
 
+                        # check if we can answer with knowledge base
                         if subject_match != None:
+                            # print random response that's related to subject
                             return subject_match
                         
+                        # test
                         print('intent', i)
-                        print('context req', i['context_req'])
+                        print('context req: ', i['context_req'])
 
+                        # if no matching subjects or strong sentiments, use default intents
                         if match_context(i['context_req']) or i['context_req'] == [""]:
+                            # test
                             print('cur tag: ', i['tag'])
 
+                            # set new context
                             context = i['context_set']
+                            
+                            # test
                             print(f'new context: {context}')
 
+                            # get a random response from the intent
                             random_response = random.choice(i['responses'])
 
                             if i['tag'] == 'dislikes':
-                                term = random.choice(cur_user.dislikes)
-                                random_response = random_response + term
+                                # retrieve random fact from user's dislikes
+                                fact = random.choice(cur_user.dislikes)
+                                # concatenate fact to response
+                                random_response = random_response + fact
 
                             if i['tag'] == 'likes':
-                                term = random.choice(cur_user.likes)
-                                random_response = random_response + term
+                                # retrieve random fact from user's likes
+                                fact = random.choice(cur_user.likes)
+                                # concatenate fact to response
+                                random_response = random_response + fact
 
+                            # if user wants to exit
                             if i['tag'] == 'bye':
                                 bye = True
-                                pickle.dump(users_data, open('users_data.pkl', 'wb'))
+                                # save user data before exiting
+                                pickle.dump(users_data, open('users/users_data.pkl', 'wb'))
 
-                            # a random response from the intent
+                            # a random response for intent
                             return random_response
-            
+            # no context match for cur intent, go to the next one
             response_results.pop(0)
         
+        # there are matching intents but no matching context
         for i in intents['intents']:
             if i['tag'] == 'noanswer':
                 return random.choice(i['responses'])
+    # no matching intents within the error margin
     else:
         return 'I\'m sorry, I don\'t understand.'
 
 def ask_name():
     return 'Hello! What is your name?'
 
-def greet_back(name):
-    return 'I am Van Gogh Bot, ' + name + '! How can I help you?'
-
 def greet_usr():
     # get greeting intent
     for i in intents['intents']:
         if i['tag'] == 'greeting':
+            # get a random response from the intent
             return random.choice(i['responses'])
 
 def welcome_back():
     # get welcome back intent
     for i in intents['intents']:
         if i['tag'] == 'welcome_back':
+            # get a random response from the intent
             return random.choice(i['responses'])
     
 def exit():
@@ -316,20 +352,34 @@ def get_usrname(usr_name):
     global users_data
 
     print(ask_name())
+
+    # test
     usr_name = input('You: ').lower()
 
     returning_usr = False
     
+    # check if it's a returning user
     for usr in users_data:
         if usr_name == usr.name.lower():
+            # set current user based on user data
             cur_user = usr
+
+            # test
+            print(welcome_back())
+
             returning_usr = True
             break
     
+    # if it's a new user
     if not returning_usr:
+        # create new user
         cur_user = User(usr_name)
         users_data.append(usr)
-        return greet_back(usr_name)
+
+        # test 
+        print(greet_usr())
+
+        return greet_usr()
     
     return welcome_back()
     
@@ -352,7 +402,7 @@ train_y = data['train_y']
 model = pickle.load(open('model/neural_model.pkl', 'rb'))
 
 # load users
-
+users_data = pickle.load(open('users/users_data.pkl', 'rb'))
 
 # START CHAT
 # start chat by asking for user's name
@@ -363,14 +413,11 @@ if debug:
     get_usrname()
 
     while not bye:
-        user_input = input('You: ')
-        print('Bot: ', end = '')
+        user_input = input('>>')
+        print(response(user_input))
     quit()
 
 # CHATBOT GUI
-
-
-# create GUI
 root = Tk()
 root.title('Chatbot')
 
@@ -403,3 +450,20 @@ def send():
         root.quit()
 
 # GUI layout
+lable1 = Label(root, bg=BG_COLOR, fg=TEXT_COLOR, text="Astrobot", font=FONT_BOLD, pady=10, width=20, height=1).grid(row=0)
+
+txt = Text(root, bg=BG_COLOR, fg=TEXT_COLOR, font=FONT, width=60)
+txt.grid(row=1, column=0, columnspan=2)
+
+scrollbar = Scrollbar(txt)
+scrollbar.place(in_=txt, relheight=1, relx=1.0, bordermode='outside')
+
+e = Entry(root, bg="#2C3E50", fg=TEXT_COLOR, font=FONT, width=55)
+e.grid(row=2, column=0)
+
+send = Button(root, text="Send", font=FONT_BOLD, bg=BG_GRAY, command=send).grid(row=2, column=1)
+
+
+# main conversation loop
+txt.insert(END, '\n' + ask_name())
+root.mainloop()
