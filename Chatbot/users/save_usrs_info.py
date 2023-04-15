@@ -1,4 +1,4 @@
-# save users info to a file
+# save user model info to a file
 
 import pickle
 

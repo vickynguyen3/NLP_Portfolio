@@ -1,4 +1,4 @@
-# user samples to test the chatbot
+# user model samples to test the chatbot
 
 import pickle
 
