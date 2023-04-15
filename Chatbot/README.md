@@ -9,3 +9,8 @@
 ''' 
 pip install -r 
 '''
+
+You might need to also install spaCy dependency:
+'''
+python -m spacy download en_core_web_sm
+'''

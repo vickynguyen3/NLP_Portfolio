@@ -1,8 +1,8 @@
 {"intents": [
     
     { "tag": "greeting",
-    "patterns": ["hi", "hello", "how are you", "what's up", "good day", "hey", "yo", "sup", "howdy", "hola", "greetings", "good morning", "good afternoon", "good evening", "morning"],
-    "responses": ["Hello ~", "Hi there!"],
+    "patterns": ["hi", "hi there", "hello", "good day", "hey", "yo", "sup", "howdy", "hola", "greetings", "good morning", "good afternoon", "good evening", "morning"],
+    "responses": ["Hello ~", "Hi there!", "Hello there!", "Good day!"],
     "context_req": [""],
     "context_set" : [""]
     },
@@ -34,35 +34,7 @@
     "context_req": [""],
     "context_set" : [""]
     },
-
-    { "tag": "noanswer",
-    "patterns": ["", "teach me", "i want to learn", "tell me something", "say something", "uh", "idk", "teach me something", "uhm", "something"],
-    "responses": ["Sorry, I don't understand. Do you have anything you would like to learn about?", "Didn't quite get that. I can tell you some stuff about Van Gogh, would you like that?", "Apologies, I don't understand. Are you interested in Van Gogh?", "Sorry, I don't get what you're saying. Want to learn more about Van Gogh?"],
-    "context_req": [""],
-    "context_set" : ["asktopics"]
-    },
-
-    { "tag": "options",
-    "patterns": ["yes", "yea", "ye", "sure", "okay", "ok", "oki", "what do you do", "what can you do", "what do you know", "what can i learn", "teach me something"],
-    "responses": ["I know a few facts about Van Gogh: van gogh, love, starry night, sunflowers, theo, artist, museum, asylum, works, paintings"],
-    "context_req": ["asktopics"],
-    "context_set" : ["topics"]
-    },
-
-    { "tag": "options2",
-     "patterns": ["what do you do", "what can you do", "what do you know", "what can i learn", "teach me something"],
-     "responses": ["I know a few facts about Van Gogh: van gogh, love, starry night, sunflowers, theo, artist, museum, asylum, works, paintings"],
-     "context_req": [""],
-     "context_set" : ["topics"]
-    },
-
-    { "tag": "otheroptions",
-     "patterns":["no","no i do not", "no i don't", "not really", "sorry", "nope", "nah"],
-     "responses":["You're missing out, just ask me to teach you some facts ~"],
-     "context_req":["asktopics"],
-     "context_set":[""]
-    },
-
+    
     { "tag": "likes",
     "patterns": ["what do i like", "what am i interested in", "what are my interests", "what do you know about me", "do you know what i like", "what do i love"],
     "responses": ["I think you seem interested in "],
@@ -75,5 +47,33 @@
      "responses": ["I think you don't seem interested in "],
      "context_req": [""],
      "context_set": [""]
+    },
+
+    { "tag": "teachme",
+     "patterns": ["what do you do", "what can you do", "what do you know", "what can i learn", "teach me something", "teach me", "i want to learn", "tell me something"],
+     "responses": ["I know a few facts about Van Gogh: van gogh, love, starry night, sunflowers, theo, artist, museum, asylum, works, paintings"],
+     "context_req": [""],
+     "context_set" : ["topics"]
+    },
+
+    { "tag": "noanswer",
+    "patterns": ["", "what", "say something", "uh", "idk", "uhm", "something", "anything"],
+    "responses": ["Sorry, I don't understand. Do you want to learn something about Van Gogh?", "Didn't quite get that. I can tell you some stuff about Van Gogh, would you like that?", "Apologies, I don't understand. Are you interested in Van Gogh?", "Sorry, I don't get what you're saying. Want to learn about Van Gogh?"],
+    "context_req": [""],
+    "context_set" : ["asktopics"]
+    },
+
+    { "tag": "yesoptions",
+    "patterns": ["yes", "yea", "ye", "sure", "okay", "ok", "oki", "what can i learn", "i want to learn"],
+    "responses": ["I know a few facts about Van Gogh: van gogh, love, starry night, sunflowers, theo, artist, museum, asylum, works, paintings"],
+    "context_req": ["asktopics"],
+    "context_set" : ["topics"]
+    },
+ 
+    { "tag": "nopeoptions",
+     "patterns":["no","no i do not", "no i don't", "not really", "sorry", "nope", "nah"],
+     "responses":["You're missing out, just ask me to teach you some facts ~"],
+     "context_req":["asktopics"],
+     "context_set":[""]
     }
 ]}

@@ -17,6 +17,7 @@ import sklearn
 from sklearn.neural_network import MLPClassifier
 import os
 from tkinter import *
+import spacy
 
 stopwords = set(stopwords.words('english'))
 stopwords = stopwords - set(['no', 'not', 'nor', 'don', 'don\'t', 'ain', 'aren', 'aren\'t', 'couldn', 'couldn\'t', 'didn', 'didn\'t', 'doesn', 'doesn\'t', 'hadn', 'hadn\'t', 'hasn', 'hasn\'t', 'haven', 'haven\'t', 'isn', 'isn\'t', 'mightn', 'mightn\'t', 'mustn', 'mustn\'t', 'needn', 'needn\'t', 'shan', 'shan\'t', 'shouldn', 'shouldn\'t', 'wasn', 'wasn\'t', 'weren', 'weren\'t', 'won', 'won\'t', 'wouldn', 'wouldn\'t'])
@@ -129,6 +130,9 @@ def get_subjects(sentence):
 
     subject_tok.reverse()
 
+    # test
+    print('reversed subject tokens: ', subject_tok)
+    
     return subject_tok
 
 # get one subject from list of possible subjects of a sentence
@@ -179,7 +183,7 @@ def clean_up_sentence(sentence):
     sentence_words = word_tokenize(sentence)
 
     # stem each word
-    stemmer = LancasterStemmer
+    stemmer = LancasterStemmer()
     sentence_words = [stemmer.stem(word.lower()) for word in sentence_words if word.isalpha() and word not in stopwords]
     
     return sentence_words
@@ -273,6 +277,8 @@ def response(sentence):
 
                         # check if we can answer with knowledge base
                         if subject_match != None:
+                            # test
+                            print(i['tag'])
                             # print random response that's related to subject
                             return subject_match
                         
@@ -319,7 +325,7 @@ def response(sentence):
         
         # there are matching intents but no matching context
         for i in intents['intents']:
-            if i['tag'] == 'noanswer':
+            if i['tag'] == 'noanswer' or i['tag'] == 'teach':
                 return random.choice(i['responses'])
     # no matching intents within the error margin
     else:
@@ -354,7 +360,7 @@ def get_usrname(usr_name):
     print(ask_name())
 
     # test
-    usr_name = input('You: ').lower()
+    usr_name = input('>>').lower()
 
     returning_usr = False
     
@@ -364,7 +370,9 @@ def get_usrname(usr_name):
             # set current user based on user data
             cur_user = usr
 
+            
             # test
+            print('cur user: ', cur_user)
             print(welcome_back())
 
             returning_usr = True
@@ -377,6 +385,7 @@ def get_usrname(usr_name):
         users_data.append(usr)
 
         # test 
+        print(' new cur user: ', cur_user)
         print(greet_usr())
 
         return greet_usr()
@@ -407,10 +416,12 @@ users_data = pickle.load(open('users/users_data.pkl', 'rb'))
 # START CHAT
 # start chat by asking for user's name
 os.system('clear')
-debug = False
+debug = True
 
 if debug:
-    get_usrname()
+    usrname = 'vicky'
+
+    get_usrname(usrname)
 
     while not bye:
         user_input = input('>>')
@@ -418,6 +429,7 @@ if debug:
     quit()
 
 # CHATBOT GUI
+'''
 root = Tk()
 root.title('Chatbot')
 
@@ -450,7 +462,7 @@ def send():
         root.quit()
 
 # GUI layout
-lable1 = Label(root, bg=BG_COLOR, fg=TEXT_COLOR, text="Astrobot", font=FONT_BOLD, pady=10, width=20, height=1).grid(row=0)
+lable1 = Label(root, bg=BG_COLOR, fg=TEXT_COLOR, text="Van Gogh Bot", font=FONT_BOLD, pady=10, width=20, height=1).grid(row=0)
 
 txt = Text(root, bg=BG_COLOR, fg=TEXT_COLOR, font=FONT, width=60)
 txt.grid(row=1, column=0, columnspan=2)
@@ -467,3 +479,4 @@ send = Button(root, text="Send", font=FONT_BOLD, bg=BG_GRAY, command=send).grid(
 # main conversation loop
 txt.insert(END, '\n' + ask_name())
 root.mainloop()
+'''

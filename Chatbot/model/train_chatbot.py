@@ -13,7 +13,7 @@ from nltk.tokenize import word_tokenize
 
 from nltk.corpus import stopwords
 stopwords = set(stopwords.words('english'))
-stopwords = stopwords - set(['no', 'not'])
+stopwords = stopwords - set(['no', 'not', 'can', 'are'])
 
 # chatbot intents file
 import json
@@ -139,7 +139,7 @@ def bag_of_words(sentence, words):
 # predict the intent using a bag of words, returns descending list of probable responses
 def classify(sentence):
     print(f'sentence: {sentence}')
-    ERR_MARGIN = 0.25
+    ERR_MARGIN = 0.0
 
     # generate probabilities from the model
     model_results = neural_model.predict([bag_of_words(sentence, words)])[0]
@@ -148,7 +148,7 @@ def classify(sentence):
 
     # sort by strength of probability and reverse it to descending order so most probable is first
     model_results.sort(key = lambda x: x[1], reverse = True)
-    
+
     return_list = []
 
     for r in model_results:
@@ -159,9 +159,19 @@ def classify(sentence):
 
 debug = True
 if (debug):
-    classify('what is your name')
     classify('hi')
-    classify('what')
+    classify('i back')
+    classify('who are you')
+    classify('what can you do')
+    classify('thanks')
+    classify('bye')
+    classify('what do i dislike')
+    classify('what do i like')
+    classify('uhm')
+    classify('not really')
+    classify('i want to learn')
+    classify('i like to play video games')
+    classify('who is Van Gogh')
 
     while True:
         user_input = input('>>: ')
