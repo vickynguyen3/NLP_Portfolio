@@ -226,10 +226,20 @@ def classify(sentence):
 
 # --------------------- USER RESPONSE ---------------------
 
+def view_user_dict(datalist):
+
+    for user in datalist:
+        print(f'User: {user.name}')
+        print(f'Likes: {user.likes}')
+        print(f'Dislikes: {user.dislikes}')
+
+
+
 def response(sentence):
     global context
     global bye
     global cur_user
+    global users_data
 
     # test
     print(f'cur context: {context}')
@@ -261,6 +271,8 @@ def response(sentence):
                         lemma = get_one_subject(sentence)
                         mod_likes(lemma, mode = 'append')
                         
+                        print(f'current user likes: {cur_user.likes}')
+
                         return 'I\'m happy to hear that! I\'ll keep that in mind!'
                 
                     elif sentiment_scores(sentence) == 'Negative' and len(get_subjects(sentence)) > 0 and match_subjects(sentence) != None:
@@ -270,6 +282,8 @@ def response(sentence):
                         lemma = get_one_subject(sentence)
                         mod_dislikes(lemma, mode = 'append')
                         
+                        print(f'current user dislikes: {cur_user.dislikes}')
+
                         return 'I\'m sorry to hear that. I\'ll keep that in mind!'
                     
                     else:
@@ -315,7 +329,9 @@ def response(sentence):
                             # if user wants to exit
                             if i['tag'] == 'bye':
                                 bye = True
+
                                 # save user data before exiting
+                                view_user_dict(users_data)
                                 pickle.dump(users_data, open('users/users_data.pkl', 'wb'))
 
                             # a random response for intent
@@ -360,13 +376,13 @@ def get_usrname(usr_name):
     print(ask_name())
 
     # test
-    usr_name = input('>>').lower()
+    #usr_name = input('>>').lower()
 
     returning_usr = False
     
     # check if it's a returning user
     for usr in users_data:
-        if usr_name == usr.name.lower():
+        if usr_name.lower() == usr.name.lower():
             # set current user based on user data
             cur_user = usr
 
@@ -382,10 +398,10 @@ def get_usrname(usr_name):
     if not returning_usr:
         # create new user
         cur_user = User(usr_name)
-        users_data.append(usr)
+        users_data.append(cur_user)
 
         # test 
-        print(' new cur user: ', cur_user)
+        print(' new cur user: ', cur_user.name)
         print(greet_usr())
 
         return greet_usr()
@@ -416,12 +432,10 @@ users_data = pickle.load(open('users/users_data.pkl', 'rb'))
 # START CHAT
 # start chat by asking for user's name
 os.system('clear')
-debug = True
+debug = False
 
 if debug:
-    usrname = 'vicky'
-
-    get_usrname(usrname)
+    get_usrname('test')
 
     while not bye:
         user_input = input('>>')
@@ -429,7 +443,7 @@ if debug:
     quit()
 
 # CHATBOT GUI
-'''
+
 root = Tk()
 root.title('Chatbot')
 
@@ -479,4 +493,3 @@ send = Button(root, text="Send", font=FONT_BOLD, bg=BG_GRAY, command=send).grid(
 # main conversation loop
 txt.insert(END, '\n' + ask_name())
 root.mainloop()
-'''
