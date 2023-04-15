@@ -37,14 +37,14 @@
     
     { "tag": "likes",
     "patterns": ["what do i like", "what am i interested in", "what are my interests", "what do you know about me", "do you know what i like", "what do i love"],
-    "responses": ["I think you seem interested in "],
+    "responses": ["I believe you are interested in "],
     "context_req": [""],
     "context_set": [""]
     },
 
     { "tag": "dislikes",
      "patterns": ["what do i not like", "what do i dislike", "what do i hate", "what don't i like", "what i don't like", "don't", "dont", "do not", "not"],
-     "responses": ["I think you don't seem interested in "],
+     "responses": ["I believe you aren't interested in "],
      "context_req": [""],
      "context_set": [""]
     },
