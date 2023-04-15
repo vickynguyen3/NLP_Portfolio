@@ -1,24 +1,26 @@
 # How To Run the Chatbot
---
+
 ### Note: This project was done using Python 3.10.10
 
-1. Please download and extract the Chatbot zip file
+Step 1. Please download and extract the Chatbot zip file
 
-2. In a terminal, please run the following command:
+Step 2. In a terminal, please run the following command:
 
-''' 
-pip install -r requirements.txt
-'''
+ 
+``` 
+pip install -r requirements.txt 
+```
+
 
 You might need to also install spaCy dependency:
-'''
+```
 python -m spacy download en_core_web_sm
-'''
+```
 
-There may be other dependencies that are required such as nltk so you may need to use this to help install the correct dependencies.
+There may be other dependencies that are required such as nltk so you may need to use [this](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Chatbot/nltk_dependency.py) to help install the correct dependencies.
 
-3. **If you do not wish to modify the chatbot's model or user models, skip to step 5.** Otherwise, create a new model using train_chatbot.py located in the 'model' folder.
+Step 3. **If you do not wish to modify the chatbot's model or user models, skip to Step 5.** Otherwise, you may create a new model using [train_chatbot.py](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Chatbot/model/train_chatbot.py) located in the 'model' folder.
 
-4. If you wish to ever reset or modify the starting user models, run usr_samples.py in the 'users' folder.
+Step 4. If you want to reset or modify the starting user models, run [usr_samples.py](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Chatbot/users/usr_samples.py) in the 'users' folder.
 
-5. Run chatbot.py
+Step 5. Run [chatbot.py](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Chatbot/chatbot.py)
