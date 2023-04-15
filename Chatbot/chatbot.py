@@ -254,16 +254,7 @@ def response(sentence):
                     print(f'match_subjects: {match_subjects(sentence)}')
 
                     # check for strong sentiments of words in knowledge base before using knowledge base and intents
-                    if sentiment_scores(sentence) == 'Negative' and len(get_subjects(sentence)) > 0 and match_subjects(sentence) != None:
-                        # test
-                        print('negative')
-
-                        lemma = get_one_subject(sentence)
-                        mod_dislikes(lemma, mode = 'append')
-                        
-                        return 'I\'m sorry to hear that. I\'ll keep that in mind!'
-                    
-                    elif sentiment_scores(sentence) == 'Positive' and len(get_subjects(sentence)) > 0 and match_subjects(sentence) != None:
+                    if sentiment_scores(sentence) == 'Positive' and len(get_subjects(sentence)) > 0 and match_subjects(sentence) != None:
                         # test
                         print('positive')
 
@@ -271,6 +262,15 @@ def response(sentence):
                         mod_likes(lemma, mode = 'append')
                         
                         return 'I\'m happy to hear that! I\'ll keep that in mind!'
+                
+                    elif sentiment_scores(sentence) == 'Negative' and len(get_subjects(sentence)) > 0 and match_subjects(sentence) != None:
+                        # test
+                        print('negative')
+
+                        lemma = get_one_subject(sentence)
+                        mod_dislikes(lemma, mode = 'append')
+                        
+                        return 'I\'m sorry to hear that. I\'ll keep that in mind!'
                     
                     else:
                         subject_match = match_subjects(sentence)

@@ -51,7 +51,7 @@
 
     { "tag": "teachme",
      "patterns": ["what do you do", "what can you do", "what do you know", "what can i learn", "teach me something", "teach me", "i want to learn", "tell me something"],
-     "responses": ["I know a few facts about Van Gogh: sunflowers, asylum, museum, paintings, impressionist, night, van, theo, works, artist"],
+     "responses": ["I know a few facts about Van Gogh: sunflowers, asylum, museum, nature, paintings, night, brother, artist, works, gogh"],
      "context_req": [""],
      "context_set" : ["topics"]
     },
@@ -65,7 +65,7 @@
 
     { "tag": "yesoptions",
     "patterns": ["yes", "yea", "ye", "sure", "okay", "ok", "oki", "what can i learn", "i want to learn"],
-    "responses": ["I know a few facts about Van Gogh: sunflowers, asylum, museum, paintings, impressionist, night, van, theo, works, artist"],
+    "responses": ["I know a few facts about Van Gogh: sunflowers, asylum, museum, nature, paintings, night, brother, artist, works, gogh"],
     "context_req": ["asktopics"],
     "context_set" : ["topics"]
     },
