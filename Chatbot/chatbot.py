@@ -209,13 +209,18 @@ def classify(sentence):
     ERR_MARGIN = 0.25
 
     # generate probabilities from the model
-    model_results = model.predict([bag_of_words(sentence, words)])[0]
+    model_results = model.predict_proba([bag_of_words(sentence, words)])[0]
     # filter out predictions below a threshold/margin
     model_results = [[i, r] for i, r in enumerate(model_results) if r > ERR_MARGIN]
-
+    
+    '''
+    for res in model_results:
+        print(f'prob: {res[1]}')
+        print(f'class: {classes[res[0]]}')
+    '''
     # sort by strength of probability and reverse it to descending order so most probable is first
     model_results.sort(key = lambda x: x[1], reverse = True)
-    
+
     return_list = []
 
     for r in model_results:
