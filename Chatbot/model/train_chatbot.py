@@ -138,7 +138,7 @@ def bag_of_words(sentence, words):
 # predict the intent using a bag of words, returns descending list of probable responses
 def classify(sentence):
     print(f'sentence: {sentence}')
-    ERR_MARGIN = 0.0
+    ERR_MARGIN = 0.25
 
     # generate probabilities from the model
     model_results = neural_model.predict([bag_of_words(sentence, words)])[0]
