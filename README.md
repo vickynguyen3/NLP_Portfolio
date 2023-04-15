@@ -70,22 +70,19 @@ It a summary of the ACL Paper, “Perceiving the World: Question-guided Reinforc
 
 --
 ## Chatbot
-A [basic chatbot](https://github.com/vickynguyen3/NLP_Portfolio/tree/main/Chatbot) that can carry on a limited conversation on topics about Vincent Van Gogh. 
+Created [basic chatbot](https://github.com/vickynguyen3/NLP_Portfolio/tree/main/Chatbot) using NLP techniques learned in class. The Chatbot can carry on a limited conversation on topics about Vincent Van Gogh. You can find the report [here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/ChatbotReport-vtn180004.pdf)
 
 ### How To Run the Chatbot
 
 **Note: This project was done using Python 3.10.10**
 
-
 **STEP 1:** Please download and extract the [Chatbot zip file](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Chatbot.zip)
 
 **STEP 2:** In a terminal, please run the following command:
 
- 
 ``` 
 pip install -r requirements.txt 
 ```
-
 
 You might need to also install spaCy dependency:
 ```
