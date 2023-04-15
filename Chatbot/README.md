@@ -3,7 +3,7 @@
 **Note: This project was done using Python 3.10.10**
 
 
-**STEP 1:** Please download and extract the [Chatbot zip file]()
+**STEP 1:** Please download and extract the [Chatbot zip file](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Chatbot.zip)
 
 **STEP 2:** In a terminal, please run the following command:
 
