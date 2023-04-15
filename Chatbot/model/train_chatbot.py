@@ -1,7 +1,6 @@
 # Vicky Nguyen, vtn180004
 # CS 4395.001
 # Chatbot Project - Model Training
-# Path: Chatbot\model\train_chatbot.py
 
 import numpy as np
 import random
@@ -13,7 +12,7 @@ from nltk.tokenize import word_tokenize
 
 from nltk.corpus import stopwords
 stopwords = set(stopwords.words('english'))
-stopwords = stopwords - set(['no', 'not', 'can', 'are'])
+stopwords = stopwords - set(['no', 'not', 'can', 'are', 'do', 'okay', 'like', 'know', 'am', 'who', 'want'])
 
 # chatbot intents file
 import json
@@ -170,8 +169,7 @@ if (debug):
     classify('uhm')
     classify('not really')
     classify('i want to learn')
-    classify('i like to play video games')
-    classify('who is Van Gogh')
+    #classify('i like the starry night')
 
     while True:
         user_input = input('>>: ')
