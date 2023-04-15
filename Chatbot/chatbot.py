@@ -20,7 +20,7 @@ from tkinter import *
 import spacy
 
 stopwords = set(stopwords.words('english'))
-stopwords = stopwords - set(['no', 'not', 'nor', 'don', 'don\'t', 'ain', 'aren', 'aren\'t', 'couldn', 'couldn\'t', 'didn', 'didn\'t', 'doesn', 'doesn\'t', 'hadn', 'hadn\'t', 'hasn', 'hasn\'t', 'haven', 'haven\'t', 'isn', 'isn\'t', 'mightn', 'mightn\'t', 'mustn', 'mustn\'t', 'needn', 'needn\'t', 'shan', 'shan\'t', 'shouldn', 'shouldn\'t', 'wasn', 'wasn\'t', 'weren', 'weren\'t', 'won', 'won\'t', 'wouldn', 'wouldn\'t'])
+stopwords = stopwords - set(['no', 'not', 'can', 'are', 'do', 'okay', 'like', 'know', 'am', 'who', 'want'])
 
 usr_name = ''
 context = ['']
