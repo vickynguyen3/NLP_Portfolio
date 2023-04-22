@@ -96,3 +96,7 @@ There may be other dependencies that are required such as nltk so you may need t
 **STEP 4:** If you want to reset or modify the starting user models, run [usr_samples.py](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Chatbot/users/usr_samples.py), which is located in the 'users' folder.
 
 **STEP 5:** Run [chatbot.py](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Chatbot/chatbot.py)
+
+--
+## Text Classification 2
+Gaining experience with Keras, text classification, and deep learning model variations and embeddings. I used a Kaggle data sets, which is about the sentiments related to COVID-19 and the pandemic, and attempted to predict their sentiments using different architecture such as RNN. The code and comments can be found in the [notebook](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Sklearn/txtclassification2-vtn180004.ipynb).
