@@ -70,7 +70,7 @@ It a summary of the ACL Paper, “Perceiving the World: Question-guided Reinforc
 
 --
 ## [Chatbot](https://github.com/vickynguyen3/NLP_Portfolio/tree/main/Chatbot)
-Created [basic chatbot](https://github.com/vickynguyen3/NLP_Portfolio/tree/main/Chatbot) using NLP techniques learned in class. The Chatbot can carry on a limited conversation on topics about Vincent Van Gogh. You can find the report [here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/ChatbotReport-vtn180004.pdf)
+Created [basic chatbot](https://github.com/vickynguyen3/NLP_Portfolio/tree/main/Chatbot) using NLP techniques learned in class. The Chatbot can carry on a limited conversation on topics about Vincent Van Gogh. You can find the [report here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/ChatbotReport-vtn180004.pdf)
 
 ### How To Run the Chatbot
 
