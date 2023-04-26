@@ -2,7 +2,7 @@
 This is a NLP Portfolio for CS 4395
 
 ---
-[Topics & Skills](https://github.com/vickynguyen3/NLP_Portfolio/tree/main/skills)
+## [Topics & Skills](https://github.com/vickynguyen3/NLP_Portfolio/tree/main/skills)
 
 ---
 ## [Overview of NLP](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/OverviewOfNLP.pdf)
