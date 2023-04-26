@@ -2,6 +2,9 @@
 This is a NLP Portfolio for CS 4395
 
 ---
+[Topics & Skills](https://github.com/vickynguyen3/NLP_Portfolio/tree/main/skills)
+
+---
 ## [Overview of NLP](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/OverviewOfNLP.pdf)
 This is a [document](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/OverviewOfNLP.pdf) describing an overview of Natural Language Processing.
 
@@ -59,16 +62,16 @@ We analyzed our scrape data by using TF-IDF to find the most important terms rel
 
 [Read Me - Web Crawler](https://github.com/meintgl/NLP-Portfolio/blob/main/Webcrawler_mdc190005/readme.md)
 
---
+---
 ## [SKLearn and Text Classification](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Sklearn/textclass-vtn180004.ipynb)
 
 [Python notebook](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Sklearn/textclass-vtn180004.ipynb) that documents my experiences using text classification by using a data set from Kaggle that involved tweets related to COVID-19 and made attempts to use ML algorithms such as Naive Bayes, Logistics Regression, and Neural Networks.
 
---
+---
 ## [ACL Paper Summary](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/CS4395.001ACL.pdf)
 It a summary of the ACL Paper, “Perceiving the World: Question-guided Reinforcement Learning for Text-based Games”. You can find it [here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/CS4395.001ACL.pdf)
 
---
+---
 ## [Chatbot](https://github.com/vickynguyen3/NLP_Portfolio/tree/main/Chatbot)
 Created [basic chatbot](https://github.com/vickynguyen3/NLP_Portfolio/tree/main/Chatbot) using NLP techniques learned in class. The Chatbot can carry on a limited conversation on topics about Vincent Van Gogh. You can find the [report here](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/ChatbotReport-vtn180004.pdf)
 
@@ -97,6 +100,6 @@ There may be other dependencies that are required such as nltk so you may need t
 
 **STEP 5:** Run [chatbot.py](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Chatbot/chatbot.py)
 
---
+---
 ## [Text Classification 2](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Sklearn/txtclassification2-vtn180004.ipynb)
 Gaining experience with Keras, text classification, and deep learning model variations and embeddings. I used a Kaggle data sets, which is about the sentiments related to COVID-19 and the pandemic, and attempted to predict their sentiments using different architecture such as RNN. The code and comments can be found in the [notebook](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Sklearn/txtclassification2-vtn180004.ipynb).
