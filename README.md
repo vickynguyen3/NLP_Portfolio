@@ -103,3 +103,8 @@ There may be other dependencies that are required such as nltk so you may need t
 ---
 ## [Text Classification 2](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Sklearn/txtclassification2-vtn180004.ipynb)
 Gaining experience with Keras, text classification, and deep learning model variations and embeddings. I used a Kaggle data sets, which is about the sentiments related to COVID-19 and the pandemic, and attempted to predict their sentiments using different architecture such as RNN. The code and comments can be found in the [notebook](https://github.com/vickynguyen3/NLP_Portfolio/blob/main/Sklearn/txtclassification2-vtn180004.ipynb).
+
+---
+## Summary
+
+Going into Human Language Technologies, I had some expectations on what I can learn in the class. However, after completing the class, the class has exceeded my expectations. I was given the opportunity to learn and utilize Python to code various projects that ranges from text processing to a chatbot that uses a neural network model and saves user's data. In the future, I expect that NLP and machine learning will continue to heavily influence the world with the potential that AI has in recent years. Since I am truly interested in these subjects and plan to keep learning more on my own, I'm looking forward to working for organizations/companies that see the promise of NLP, ML, and AI.
